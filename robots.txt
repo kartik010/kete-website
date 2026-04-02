@@ -1,5 +1,4 @@
-# Replace https://example.com with your live site origin.
 User-agent: *
 Allow: /
 
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://kernelectech.in/sitemap.xml

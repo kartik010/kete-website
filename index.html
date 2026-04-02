@@ -10,6 +10,9 @@
 <meta property="og:description" content="Electrical, instrumentation, control, and solar — engineered for scale across India and Nepal."/>
 <meta property="og:type" content="website"/>
 <meta name="twitter:card" content="summary_large_image"/>
+<link rel="canonical" href="https://kernelectech.in/"/>
+<meta property="og:url" content="https://kernelectech.in/"/>
+<meta property="og:image" content="https://kernelectech.in/images/home-page-mid-banner.webp"/>
 <title>KETE - Kern Elec Tech Experts | Electrical · Instrumentation · Control</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -1494,7 +1497,6 @@
     transform: scale(1.03);
     filter: brightness(0.68) saturate(0.68);
   }
-  .contact-form-section {}
   .form-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 32px; color: var(--ink);
@@ -1517,6 +1519,7 @@
     outline: none;
     transition: border-color 0.2s, background 0.2s;
     -webkit-appearance: none;
+    appearance: none;
   }
   .form-input::placeholder { color: var(--text-muted); }
   .form-input:focus {
@@ -1583,7 +1586,6 @@
     display: flex; align-items: center; justify-content: space-between;
     gap: 40px;
   }
-  .newsletter-text {}
   .newsletter-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 36px; color: #1C1917;
@@ -1640,7 +1642,6 @@
     display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
     gap: 60px; margin-bottom: 60px;
   }
-  .footer-brand {}
   .footer-logo-wrap {
     display: block;
     margin-bottom: 16px;
@@ -2836,10 +2837,8 @@
       <div class="form-title">Leave Us A Message</div>
       <div class="form-desc">Fill out the form and our team will reach out to you shortly.</div>
       <!--
-        Web3Forms (web3forms.com): use the Access Key below. In the dashboard, set “allowed domain” / site URL to your LIVE address
-        when you host — e.g. https://kernelectech.in (and https://www.… if you use www). localhost is only for testing on your computer
-        with a local server (http://localhost:PORT); add that separately in Web3Forms if they let you list multiple domains, or relax
-        the restriction until the site is live. Opening this file as file:// will not send the form.
+        Web3Forms: in the dashboard, allow both https://kernelectech.in and https://www.kernelectech.in (www redirects to non-www on Vercel).
+        For local testing use http://localhost:… if Web3Forms lets you add it. file:// will not submit the form.
       -->
       <form id="contact-form" method="post" novalidate data-web3forms-access-key="83f88c01-37e4-4bf5-8d0d-52f9038d7d85">
         <div class="form-group">
@@ -2902,7 +2901,6 @@
         <li><a href="services/solar-installation.html">Solar installation</a></li>
         <li><a href="services/electrical-instrumentation.html">Electrical &amp; instrumentation</a></li>
         <li><a href="services/residential-solar.html">Residential solar</a></li>
-        <li><a href="SOLAR%20PANNEL/index.html">Solar panel showcase</a></li>
       </ul>
     </div>
     <div>
