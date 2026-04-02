@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="KETE residential solar — efficient, discreet home PV systems with clear savings and handover."/>
+<meta name="theme-color" content="#0A0A0A"/>
+<meta name="color-scheme" content="dark"/>
+<title>Residential solar | KETE — Kern Elec Tech Experts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --orange: #F5820A;
+    --orange-dark: #D96F00;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --text-primary: #F0EDE8;
+    --text-secondary: #A8A29E;
+    --text-muted: #6B6560;
+    --border-subtle: rgba(255,255,255,0.06);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--text-primary);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+  .svc-top {
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 18px clamp(20px, 4vw, 48px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    background: rgba(10,10,10,0.96);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .svc-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+  .svc-brand span { color: var(--orange); }
+  .svc-navlinks { display: flex; gap: 22px; flex-wrap: wrap; }
+  .svc-navlinks a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .svc-navlinks a:hover { color: var(--orange); }
+  main { max-width: 720px; margin: 0 auto; padding: 40px clamp(20px, 4vw, 32px) 88px; }
+  .svc-hero-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 2px;
+    margin-bottom: 28px;
+    border: 1px solid var(--border-subtle);
+    filter: brightness(0.88) saturate(0.72);
+  }
+  .svc-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.4rem, 7vw, 3.5rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 18px;
+  }
+  .svc-lead {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin-bottom: 36px;
+    line-height: 1.75;
+  }
+  .svc-section { margin-bottom: 44px; }
+  .svc-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.65rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+  }
+  .svc-section p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+  .svc-list { list-style: none; }
+  .svc-list li {
+    color: var(--text-secondary);
+    font-size: 15px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    border-left: 3px solid var(--orange);
+    background: rgba(255,255,255,0.03);
+  }
+  .svc-text-link { color: var(--orange); font-weight: 600; text-decoration: none; }
+  .svc-text-link:hover { text-decoration: underline; }
+  .svc-cta {
+    margin-top: 48px;
+    padding: 28px 24px;
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid var(--orange);
+    background: var(--dark);
+  }
+  .svc-cta p { margin-bottom: 18px; }
+  .svc-btn {
+    display: inline-block;
+    background: var(--orange);
+    color: #0a0a0a;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px 26px;
+    text-decoration: none;
+  }
+  .svc-btn:hover { background: var(--orange-dark); }
+  .svc-foot {
+    border-top: 1px solid var(--border-subtle);
+    padding: 28px clamp(20px, 4vw, 48px);
+    text-align: center;
+  }
+  .svc-foot a { color: var(--text-muted); font-size: 13px; text-decoration: none; }
+  .svc-foot a:hover { color: var(--orange); }
+
+  @keyframes ketePageIn {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .svc-top {
+    animation: ketePageIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  main {
+    animation: ketePageIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .svc-top, main { animation: none !important; opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+<body>
+<header class="svc-top">
+  <a class="svc-brand" href="../index.html">KETE <span>·</span> Home solar</a>
+  <nav class="svc-navlinks" aria-label="Service page">
+    <a href="../index.html#services">All services</a>
+    <a href="../SOLAR%20PANNEL/index.html">Panel showcase</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <img class="svc-hero-img" src="../images/rooftop.webp" alt="" width="800" height="450" loading="eager"/>
+  <p class="svc-eyebrow">Service · 03</p>
+  <h1>Residential solar</h1>
+  <p class="svc-lead">Quiet, efficient rooftop systems that respect your architecture and your bill — engineered as a long-term asset, with transparent generation estimates and a handover you can actually use.</p>
+
+  <section class="svc-section" aria-labelledby="res-what">
+    <h2 id="res-what">What you get</h2>
+    <ul class="svc-list">
+      <li>Right-sized array and inverter pairing for your roof, shade, and sanctioned load</li>
+      <li>Neat DC/AC routing, earthing, and protection that matches utility requirements</li>
+      <li>Monitoring setup so you can see performance from your phone</li>
+      <li>Clear warranty mapping and a documented O&amp;M checklist for the first year</li>
+    </ul>
+  </section>
+
+  <section class="svc-section" aria-labelledby="res-process">
+    <h2 id="res-process">Typical journey</h2>
+    <p>Site survey and sanctioning support, detailed proposal with savings assumptions, installation by trained crews, inspection coordination, and energisation. We explain trade-offs — module tier, inverter topology, and battery readiness — in plain language before you sign.</p>
+  </section>
+
+  <section class="svc-section" aria-labelledby="res-showcase">
+    <h2 id="res-showcase">See modules in context</h2>
+    <p>Explore our interactive <a class="svc-text-link" href="../SOLAR%20PANNEL/index.html">solar panel showcase</a> for a closer look at how arrays read on a roofline and how components come together.</p>
+  </section>
+
+  <aside class="svc-cta">
+    <p>Share your city, average bill, and roof access — we will outline a sensible first step.</p>
+    <a class="svc-btn" href="../index.html#contact">Request a home assessment →</a>
+  </aside>
+</main>
+
+<footer class="svc-foot">
+  <a href="../index.html">← Back to home</a>
+</footer>
+</body>
+</html>

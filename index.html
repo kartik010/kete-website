@@ -1,0 +1,3476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="KETE — Kern Elec Tech Experts. Electrical, instrumentation, control, and solar EPC across India and Nepal. Commercial, industrial, and residential solar."/>
+<meta name="theme-color" content="#0A0A0A"/>
+<meta name="color-scheme" content="dark"/>
+<meta property="og:title" content="KETE — Kern Elec Tech Experts"/>
+<meta property="og:description" content="Electrical, instrumentation, control, and solar — engineered for scale across India and Nepal."/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<title>KETE - Kern Elec Tech Experts | Electrical · Instrumentation · Control</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/></noscript>
+<link rel="dns-prefetch" href="https://unpkg.com"/>
+<link rel="dns-prefetch" href="https://a.basemaps.cartocdn.com"/>
+<link rel="preconnect" href="https://unpkg.com" crossorigin/>
+<link rel="preconnect" href="https://a.basemaps.cartocdn.com" crossorigin/>
+<link rel="dns-prefetch" href="https://api.web3forms.com"/>
+<link rel="preconnect" href="https://api.web3forms.com" crossorigin/>
+<style>
+  :root {
+    --orange: #F5820A;
+    --orange-dark: #D96F00;
+    --orange-light: #FF9C30;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --dark-2: #1A1A1A;
+    --dark-3: #222222;
+    --mid: #333333;
+    --text-primary: #F0EDE8;
+    --text-secondary: #A8A29E;
+    --text-muted: #6B6560;
+    --white: #FAFAF8;
+    --ink: #FAFAF8;
+    --border: rgba(245,130,10,0.15);
+    --border-subtle: rgba(255,255,255,0.06);
+    --solar-t: 0;
+    /* Space for fixed nav + scaled logo bleed (layout box is smaller than painted logo) */
+    --nav-safe-top: clamp(6.75rem, 5.25rem + 3.5vw, 8.75rem);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  html {
+    background-color: var(--black);
+    transition: background-color 0.35s ease;
+    scroll-padding-top: var(--nav-safe-top);
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
+  /* Sunrise → night: warm wash fades as you scroll (solar narrative) */
+  html::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 130% 70% at 50% -15%,
+        rgba(255, 210, 160, calc(0.42 * (1 - var(--solar-t)))) 0%,
+        rgba(255, 160, 90, calc(0.12 * (1 - var(--solar-t)))) 35%,
+        transparent 62%);
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: transparent;
+    color: var(--text-primary);
+    overflow-x: clip;
+    cursor: auto;
+  }
+
+  @media (pointer: fine) {
+    body.has-custom-cursor { cursor: none; }
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--orange);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform;
+    mix-blend-mode: normal;
+  }
+  .cursor-follower {
+    width: 32px; height: 32px;
+    border: 1px solid rgba(245,130,10,0.5);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    will-change: transform, width, height;
+  }
+
+  body:not(.has-custom-cursor) .cursor,
+  body:not(.has-custom-cursor) .cursor-follower {
+    display: none !important;
+  }
+
+  /* Newsletter: orange strip — orange custom dot is invisible; use system cursor + hide faux cursor */
+  @media (pointer: fine) {
+    body.has-custom-cursor .newsletter { cursor: auto; }
+    body.has-custom-cursor .newsletter .newsletter-input { cursor: text; }
+    body.has-custom-cursor .newsletter .newsletter-btn { cursor: pointer; }
+  }
+  body.has-custom-cursor.newsletter-cursor-hide .cursor,
+  body.has-custom-cursor.newsletter-cursor-hide .cursor-follower {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1000; opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+    padding: clamp(12px, 1.25vw + 10px, 20px) clamp(24px, 4vw, 60px);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: clamp(12px, 2vw, 20px);
+    min-height: var(--nav-safe-top);
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: hidden;
+    transition: background 0.4s ease, border-color 0.4s ease, padding 0.4s ease;
+    background: transparent;
+  }
+  /* Solid bar (no backdrop-filter) — avoids GPU “logo box” with blend modes */
+  nav.scrolled {
+    background: rgba(10, 10, 10, 0.97);
+    border-bottom: 1px solid var(--border-subtle);
+    padding-top: clamp(10px, 1vw + 8px, 14px);
+    padding-bottom: clamp(10px, 1vw + 8px, 14px);
+    padding-left: clamp(24px, 4vw, 60px);
+    padding-right: clamp(24px, 4vw, 60px);
+    min-height: 0;
+  }
+
+  /* 13–15" laptops & short viewports: smaller logo paint + tighter hero type */
+  @media (max-width: 1536px), (max-height: 900px) {
+    :root {
+      --nav-safe-top: clamp(5.5rem, 4.25rem + 2.5vw, 6.75rem);
+    }
+    .nav-logo img.logo-asset {
+      height: clamp(38px, 2.5vw + 26px, 50px);
+      transform: scale(1.42) translateZ(0);
+    }
+    .hero-headline {
+      font-size: clamp(2.35rem, 4.2vw + 1.1rem, 5.5rem);
+    }
+    .hero-sub {
+      font-size: clamp(14px, 0.9rem + 0.35vw, 16px);
+      margin-top: clamp(16px, 2.5vh, 28px);
+    }
+    .hero-actions { margin-top: clamp(24px, 4vh, 40px); }
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 102;
+    background: none !important;
+    box-shadow: none !important;
+    padding: 0;
+    margin: 0;
+    /* Visual logo is 2× layout size (below); reserve space so links don’t sit under the scaled graphic */
+    margin-right: clamp(48px, 11vw, 120px);
+    border: none !important;
+    outline: none;
+    border-radius: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .nav-logo:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 6px;
+    border-radius: 4px;
+  }
+  /* Logo (SVG): scale keeps visual size; translateZ avoids compositing glitches */
+  .nav-logo img.logo-asset {
+    height: clamp(44px, 3.5vw + 32px, 60px);
+    width: auto;
+    max-width: min(280px, 43vw);
+    display: block;
+    object-fit: contain;
+    object-position: left center;
+    margin: 0;
+    padding: 0;
+    border: none !important;
+    background: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0;
+    mix-blend-mode: normal;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: scale(1.85) translateZ(0);
+    transform-origin: left center;
+  }
+  .nav-logo:hover img.logo-asset {
+    filter: drop-shadow(0 0 12px rgba(245, 130, 10, 0.22));
+    -webkit-filter: drop-shadow(0 0 12px rgba(245, 130, 10, 0.22));
+  }
+  .nav-panel {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 36px;
+    flex: 1;
+  }
+  .nav-tools {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 102;
+  }
+  .nav-links { display: flex; gap: clamp(16px, 2.2vw, 36px); list-style: none; margin: 0; padding: 0; flex-wrap: nowrap; justify-content: flex-end; }
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: clamp(11px, 0.65rem + 0.35vw, 13px);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text-primary); }
+  .nav-links a:focus-visible {
+    outline: none;
+    color: var(--orange);
+    box-shadow: 0 2px 0 0 var(--orange);
+    border-radius: 1px;
+  }
+  .nav-cta {
+    background: var(--orange);
+    color: #fff;
+    padding: 10px 24px;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: none;
+    text-decoration: none;
+    transition: background 0.2s;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  }
+  .nav-cta:hover { background: var(--orange-dark); }
+  .nav-cta:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--black), 0 0 0 4px var(--orange-light);
+  }
+
+  .nav-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(255,255,255,0.04);
+    border-radius: 4px;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0;
+  }
+  .nav-toggle:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--orange);
+    border-color: var(--orange);
+  }
+  .nav-toggle-bar {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 1px;
+    transition: transform 0.25s ease, opacity 0.2s;
+  }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 12px;
+    z-index: 10000;
+    padding: 10px 16px;
+    background: var(--orange);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  .skip-link:focus {
+    left: 12px;
+  }
+
+  /* HERO — top padding reserves fixed nav + logo bleed; svh/dvh avoid mobile/laptop UI overlap */
+  #home {
+    min-height: 100svh;
+    min-height: 100dvh;
+    padding: var(--nav-safe-top) 0 0;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow-x: hidden;
+    overflow-y: visible;
+    max-width: 100%;
+    /* Cursor spotlight (updated via JS on fine pointer) */
+    --hero-spot-x: 50%;
+    --hero-spot-y: 76%;
+    --hero-spot-r: min(42vmin, 380px);
+  }
+  /* Extra dimming everywhere except a soft hole under the pointer — image reads brighter there */
+  .hero-cursor-reveal {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.34);
+    mask-image: radial-gradient(
+      circle var(--hero-spot-r) at var(--hero-spot-x) var(--hero-spot-y),
+      transparent 0%,
+      transparent 38%,
+      rgba(0, 0, 0, 0.45) 68%,
+      black 100%
+    );
+    -webkit-mask-image: radial-gradient(
+      circle var(--hero-spot-r) at var(--hero-spot-x) var(--hero-spot-y),
+      transparent 0%,
+      transparent 38%,
+      rgba(0, 0, 0, 0.45) 68%,
+      black 100%
+    );
+    mask-mode: alpha;
+    -webkit-mask-mode: alpha;
+  }
+  .hero-cursor-reveal.hero-cursor-reveal--off {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('images/about.webp') center/cover no-repeat;
+    filter: brightness(0.25) saturate(0.7);
+    transform: scale(1);
+    transform-origin: center center;
+    animation: heroKenBurns 22s ease-in-out infinite alternate;
+  }
+  @keyframes heroKenBurns {
+    from { transform: scale(1); }
+    to { transform: scale(1.07); }
+  }
+  .hero-gradient {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0) 30%, rgba(10,10,10,0.8) 70%, var(--black) 100%);
+  }
+  .hero-grid-overlay {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(245,130,10,0.04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(245,130,10,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 clamp(24px, 5vw, 60px) clamp(48px, 9vh, 88px);
+    max-width: 1400px;
+    width: 100%;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--orange);
+    margin-bottom: clamp(18px, 2.5vh, 28px);
+    opacity: 0; animation: fadeUp 0.8s 0.3s ease forwards;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 30px; height: 1px; background: var(--orange);
+  }
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.75rem, 5vw + 1.5rem, 8rem);
+    line-height: 1.02;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    max-width: 900px;
+    padding-bottom: 0.06em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    opacity: 0; animation: fadeUp 0.9s 0.5s ease forwards;
+  }
+  .hero-headline-accent {
+    display: inline-block;
+    position: relative;
+    color: var(--orange);
+    padding: 0 0.03em;
+    margin: 0 -0.01em;
+    /* Chrome composites glow more reliably on its own layer */
+    transform: translateZ(0);
+    will-change: text-shadow;
+    animation: orangeGlow 4s ease-in-out infinite;
+  }
+  .hero-sub {
+    margin-top: clamp(24px, 3.5vh, 36px);
+    font-size: clamp(15px, 0.45rem + 1.1vw, 17px);
+    font-weight: 300;
+    color: var(--text-secondary);
+    max-width: min(480px, 92vw);
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+    opacity: 0; animation: fadeUp 0.9s 0.7s ease forwards;
+  }
+  .hero-actions {
+    margin-top: clamp(32px, 5vh, 48px);
+    display: flex; gap: 16px; align-items: center;
+    opacity: 0; animation: fadeUp 0.9s 0.9s ease forwards;
+  }
+  .btn-primary {
+    background: var(--orange);
+    color: #fff; text-decoration: none;
+    padding: 14px 32px;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    transition: background 0.2s;
+    cursor: none;
+  }
+  .btn-primary:hover { background: var(--orange-dark); }
+  .btn-primary:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--black), 0 0 0 4px var(--orange-light);
+  }
+  .btn-ghost {
+    color: var(--text-secondary); text-decoration: none;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 8px;
+    transition: color 0.2s;
+    cursor: none;
+  }
+  .btn-ghost:hover { color: var(--white); }
+  .btn-ghost:focus-visible {
+    outline: none;
+    color: var(--white);
+    box-shadow: 0 0 0 2px rgba(245, 130, 10, 0.5);
+    border-radius: 4px;
+  }
+  .btn-ghost::after { content: '↓'; font-size: 16px; }
+
+  /* STATS BAR */
+  .stats-bar {
+    position: relative; z-index: 3;
+    background: var(--dark-2);
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 28px 60px;
+    display: flex; gap: 0;
+    opacity: 0; animation: fadeIn 1s 1.2s ease forwards;
+  }
+  .stat-item {
+    flex: 1;
+    display: flex; align-items: center; gap: 20px;
+    padding: 0 40px 0 0;
+    border-right: 1px solid var(--border-subtle);
+  }
+  .stat-item:first-child { padding-left: 0; }
+  .stat-item:last-child { border-right: none; padding-right: 0; }
+  .stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px; color: var(--orange);
+    line-height: 1;
+    transition: transform 0.35s ease, color 0.25s ease;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+  .stat-v-num {
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-item:hover .stat-value {
+    transform: scale(1.06);
+    color: var(--orange-light);
+  }
+  .stats-bar .stat-item {
+    opacity: 0;
+    animation: statItemIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .stats-bar .stat-item:nth-child(1) { animation-delay: 1.32s; }
+  .stats-bar .stat-item:nth-child(2) { animation-delay: 1.44s; }
+  .stats-bar .stat-item:nth-child(3) { animation-delay: 1.56s; }
+  .stats-bar .stat-item:nth-child(4) { animation-delay: 1.68s; }
+  .stat-label {
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* SECTION COMMON */
+  section { padding: 120px 60px; }
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--orange);
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 20px;
+  }
+  .section-label::after { content: ''; flex: 0 0 40px; height: 1px; background: var(--orange); }
+  .section-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 68px);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+  .section-sub {
+    font-size: 15px; font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-top: 16px;
+  }
+
+  /* PARTNERS — minimal logo ribbon, no chrome */
+  #partners {
+    position: relative;
+    background: var(--black);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: clamp(26px, 3.8vw, 44px) 0;
+    overflow: hidden;
+  }
+  .partners-inner {
+    position: relative;
+    z-index: 1;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+  .partners-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .partners-track {
+    position: relative;
+    width: 100%;
+  }
+  .partners-marquee-mask {
+    overflow: hidden;
+    padding: 6px 0;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  }
+  .partners-marquee {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    animation: partnersMarquee 28s linear infinite;
+    will-change: transform;
+  }
+  .partners-marquee:hover {
+    animation-play-state: paused;
+  }
+  @keyframes partnersMarquee {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+  .partners-marquee-group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: clamp(72px, 12vw, 160px);
+    padding-right: clamp(72px, 12vw, 160px);
+  }
+  .partner-marquee-item {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 0.72;
+  }
+  .partner-marquee-item:hover {
+    opacity: 1;
+  }
+  .partner-logo {
+    display: block;
+    width: auto;
+    max-width: min(300px, 52vw);
+    height: auto;
+    max-height: 64px;
+    object-fit: contain;
+    margin: 0;
+  }
+  /* final_logo 2.svg — wide mark; lift toward hero band */
+  .partner-logo.partner-logo--final {
+    flex-shrink: 0;
+    height: clamp(58px, 4.8vw, 74px);
+    width: auto;
+    max-height: none;
+    max-width: min(340px, 58vw);
+    object-fit: contain;
+    object-position: center center;
+  }
+  .partner-logo--hero {
+    max-height: 76px;
+    max-width: min(380px, 62vw);
+  }
+  /* Per-asset tuning (marquee) */
+  .partner-logo--logo02 {
+    max-height: 48px;
+    max-width: min(240px, 42vw);
+  }
+  .partner-logo--swich {
+    max-height: 84px;
+    max-width: min(340px, 54vw);
+  }
+  /* Gensol 16:9 wordmark — slightly above SWICH band so it reads as a primary anchor */
+  .partner-logo.partner-logo--gensol {
+    flex-shrink: 0;
+    height: clamp(92px, 8vw, 118px);
+    width: auto;
+    max-height: none;
+    max-width: min(780px, 92vw);
+    object-fit: contain;
+    object-position: center center;
+  }
+  .partner-marquee-item:hover .partner-logo {
+    transform: scale(1.04);
+    filter: grayscale(0) brightness(1.08);
+    -webkit-filter: grayscale(0) brightness(1.08);
+  }
+
+  /* ABOUT / MAP — copy left; map card right with same gutter as site padding */
+  #about {
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    padding: 120px clamp(28px, 5vw, 60px) 120px 60px;
+  }
+  .about-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: clamp(40px, 5vw, 80px);
+    align-items: center;
+    width: 100%;
+    max-width: none;
+  }
+  .about-copy {
+    min-width: 0;
+    max-width: 640px;
+  }
+  .about-features { margin-top: 48px; display: flex; flex-direction: column; gap: 24px; }
+  .feature-card {
+    padding: 24px;
+    border: 1px solid var(--border-subtle);
+    border-left: 2px solid var(--orange);
+    background: rgba(255,255,255,0.02);
+    transition: background 0.3s;
+  }
+  .feature-card:hover { background: rgba(245,130,10,0.04); }
+  .feature-title {
+    font-size: 14px; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--ink); margin-bottom: 8px;
+  }
+  .feature-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* Map — Leaflet + Carto Dark (OSM), framed to match site */
+  .map-container {
+    position: relative;
+    justify-self: end;
+    width: 100%;
+    max-width: min(560px, 100%);
+    box-sizing: border-box;
+    background: linear-gradient(165deg, rgba(26, 26, 26, 0.95) 0%, rgba(10, 10, 10, 0.98) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 3px solid var(--orange);
+    border-radius: 14px;
+    padding: 20px 18px 18px;
+    overflow: hidden;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.06) inset,
+      0 24px 48px rgba(0, 0, 0, 0.35),
+      0 0 0 1px rgba(0, 0, 0, 0.4) inset;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+  .map-container:hover {
+    border-color: rgba(245, 130, 10, 0.28);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.08) inset,
+      0 28px 56px rgba(0, 0, 0, 0.4),
+      0 0 32px rgba(245, 130, 10, 0.06);
+  }
+  .map-leaflet-shell {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    isolation: isolate;
+  }
+  .map-leaflet-shell::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 500;
+    border-radius: inherit;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+      inset 0 -40px 60px rgba(0, 0, 0, 0.35);
+  }
+  .map-leaflet {
+    width: 100%;
+    height: min(420px, 52vw);
+    min-height: 300px;
+    background: #0d0d0d;
+    font-family: 'DM Sans', sans-serif;
+    z-index: 1;
+  }
+  .map-static-fallback {
+    margin: 0;
+    display: none;
+    width: 100%;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    aspect-ratio: 320 / 360;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .map-static-fallback.is-visible { display: block; }
+  .map-static-fallback img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: #121212;
+  }
+  .map-leaflet-shell.fallback-active .map-leaflet { display: none; }
+
+  /* Custom markers */
+  .kete-map-divicon {
+    background: none !important;
+    border: none !important;
+  }
+  .kete-map-marker {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .kete-map-marker-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid rgba(245, 130, 10, 0.45);
+    animation: keteMapPulse 2.2s ease-out infinite;
+  }
+  @keyframes keteMapPulse {
+    0% { transform: scale(0.5); opacity: 0.9; }
+    100% { transform: scale(1.65); opacity: 0; }
+  }
+  .kete-map-marker-dot {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--orange);
+    box-shadow:
+      0 0 0 2px rgba(0, 0, 0, 0.95),
+      0 0 0 3px rgba(245, 130, 10, 0.4),
+      0 4px 14px rgba(245, 130, 10, 0.35);
+  }
+
+  /* Leaflet chrome — on-brand */
+  .map-leaflet .leaflet-control-zoom a {
+    background: #1a1a1a !important;
+    color: var(--text-primary) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    width: 32px !important;
+    height: 32px !important;
+    line-height: 30px !important;
+    font-size: 18px !important;
+  }
+  .map-leaflet .leaflet-control-zoom a:hover {
+    background: var(--orange) !important;
+    color: #0a0a0a !important;
+    border-color: #0a0a0a !important;
+  }
+  .map-leaflet .leaflet-bar {
+    border: none !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+    border-radius: 6px !important;
+    overflow: hidden;
+  }
+  .map-leaflet .leaflet-control-attribution {
+    background: rgba(10, 10, 10, 0.82) !important;
+    color: #8a8580 !important;
+    font-size: 9px !important;
+    letter-spacing: 0.02em;
+    padding: 2px 8px !important;
+    border-radius: 4px 0 0 0;
+    max-width: 100%;
+    white-space: normal;
+    line-height: 1.35;
+  }
+  .map-leaflet .leaflet-control-attribution a {
+    color: var(--orange-light) !important;
+  }
+  .map-leaflet .leaflet-popup-content-wrapper {
+    background: #161616 !important;
+    color: var(--text-primary) !important;
+    border: 2px solid var(--orange) !important;
+    border-radius: 2px !important;
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.55) !important;
+    padding: 0 !important;
+  }
+  .map-leaflet .leaflet-popup-content {
+    margin: 12px 14px !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+  }
+  .map-leaflet .leaflet-popup-content strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 6px;
+  }
+  .map-leaflet .leaflet-popup-tip {
+    background: #161616 !important;
+    box-shadow: none !important;
+  }
+  .map-leaflet a.leaflet-popup-close-button {
+    color: var(--text-muted) !important;
+    padding: 10px 12px 0 0 !important;
+    font-size: 20px !important;
+  }
+  .map-leaflet a.leaflet-popup-close-button:hover { color: var(--orange) !important; }
+  .map-legend-hint {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 16px;
+  }
+  .map-container .map-legend-hint {
+    text-align: center;
+  }
+  .location-cards {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding: 16px 4px 8px;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .map-container .location-cards {
+    justify-content: center;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .location-cards-shell {
+    position: relative;
+    width: 100%;
+  }
+  .location-cards-fade {
+    position: absolute;
+    top: 12px;
+    right: 0;
+    bottom: 44px;
+    width: 42px;
+    pointer-events: none;
+    z-index: 4;
+    background: linear-gradient(90deg, transparent 0%, rgba(10, 10, 10, 0.55) 55%, rgba(10, 10, 10, 0.92) 100%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    border-radius: 0 4px 4px 0;
+  }
+  .location-cards-fade.is-visible {
+    opacity: 1;
+  }
+  .location-cards-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    margin: 2px 0 0;
+    padding: 0 8px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    min-height: 22px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .location-cards-more.is-hidden {
+    display: none;
+  }
+  .location-cards-more-dots {
+    display: inline-flex;
+    gap: 5px;
+    align-items: center;
+  }
+  .location-cards-more-dots span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(245, 130, 10, 0.35);
+    animation: locationDotWave 1.4s ease-in-out infinite;
+  }
+  .location-cards-more-dots span:nth-child(2) { animation-delay: 0.15s; }
+  .location-cards-more-dots span:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes locationDotWave {
+    0%, 100% { transform: translateY(0); opacity: 0.45; }
+    50% { transform: translateY(-3px); opacity: 1; background: rgba(245, 130, 10, 0.85); }
+  }
+  .location-cards-more-arrows {
+    display: inline-flex;
+    gap: 1px;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--orange-light);
+    letter-spacing: 0;
+    text-transform: none;
+    animation: locationPeekNudge 1.15s ease-in-out infinite;
+  }
+  @keyframes locationPeekNudge {
+    0%, 100% { transform: translateX(0); opacity: 0.7; }
+    50% { transform: translateX(5px); opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .location-cards-more-dots span,
+    .location-cards-more-arrows {
+      animation: none !important;
+    }
+    .location-cards-more-arrows { opacity: 0.9; }
+  }
+  .location-card {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: 92px;
+    background: #faf9f7;
+    padding: 5px 5px 20px;
+    border-radius: 2px;
+    box-shadow:
+      0 2px 8px rgba(0,0,0,0.2),
+      0 8px 24px rgba(0,0,0,0.25);
+    transform: rotate(-2deg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  .location-card:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 3px;
+  }
+  .location-card:nth-child(even) { transform: rotate(3deg); }
+  .location-card:nth-child(3n) { transform: rotate(-1.5deg); }
+  .location-card:hover {
+    transform: rotate(0deg) translateY(-4px) scale(1.04);
+    box-shadow: 0 12px 32px rgba(245,130,10,0.2);
+    z-index: 2;
+  }
+  /* Square frame + explicit fill so photos never stretch (polaroid thumb) */
+  .location-card-photo {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 1px;
+    background: #e5e2dc;
+  }
+  .location-card-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: saturate(0.95);
+  }
+  .location-card-cap {
+    margin-top: 6px;
+    padding: 0 2px;
+    font-size: 9px;
+    font-weight: 700;
+    text-align: center;
+    color: #1a1a1a;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.25;
+  }
+  .location-card-sub {
+    display: block;
+    font-size: 8px;
+    font-weight: 500;
+    color: #666;
+    margin-top: 2px;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  /* SERVICES */
+  #services {
+    background: var(--black);
+    position: relative;
+  }
+  .services-header {
+    display: flex; justify-content: space-between;
+    align-items: flex-end; margin-bottom: 60px;
+  }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--border-subtle);
+  }
+  a.service-card {
+    background: var(--dark);
+    padding: 48px 36px;
+    position: relative; overflow: hidden;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  a.service-card * {
+    pointer-events: none;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--orange);
+    transition: width 0.4s ease;
+  }
+  .service-card:hover::before { width: 100%; }
+  .service-card:hover { background: var(--dark-2); }
+  .service-img {
+    width: 100%; height: 200px;
+    object-fit: cover;
+    margin-bottom: 28px;
+    filter: brightness(0.7) saturate(0.6);
+    transition: filter 0.45s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: scale(1);
+  }
+  .service-card:hover .service-img {
+    filter: brightness(0.85) saturate(0.8);
+    transform: scale(1.04);
+  }
+  .service-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px; color: rgba(245,130,10,0.08);
+    line-height: 1; margin-bottom: -20px;
+    position: relative; z-index: 1;
+  }
+  .service-title {
+    font-size: 18px; font-weight: 600;
+    color: var(--ink); margin: 0 0 12px;
+    position: relative; z-index: 1;
+  }
+  .service-desc {
+    margin: 0;
+    font-size: 14px; color: var(--text-secondary);
+    line-height: 1.7; position: relative; z-index: 1;
+  }
+  .service-arrow {
+    margin-top: 24px;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--orange);
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .scroll-card-slide {
+    min-height: 0;
+  }
+  @media (min-width: 901px) {
+    .scroll-card-slide {
+      display: contents;
+    }
+  }
+  #services, #portfolio {
+    overflow-x: visible;
+    overflow-y: visible;
+  }
+
+  /* PORTFOLIO */
+  #portfolio { background: var(--dark); }
+  .portfolio-header { margin-bottom: 60px; }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 2px;
+  }
+  .portfolio-item {
+    position: relative; overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--dark-2);
+    cursor: none;
+  }
+  .portfolio-item.featured {
+    grid-column: span 2;
+    aspect-ratio: 16/9;
+  }
+  .portfolio-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6) saturate(0.7);
+    transition: transform 0.6s ease, filter 0.4s;
+  }
+  .portfolio-item:hover .portfolio-img {
+    transform: scale(1.05);
+    filter: brightness(0.52) saturate(0.62);
+  }
+  .portfolio-overlay {
+    position: absolute; inset: 0;
+    padding: 24px;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 60%);
+    opacity: 1;
+    transition: all 0.3s;
+  }
+  .portfolio-item:hover .portfolio-overlay { background: rgba(10,10,10,0.48); }
+  .portfolio-client {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 6px;
+  }
+  .portfolio-title {
+    font-size: 16px; font-weight: 600;
+    color: var(--white); line-height: 1.3;
+  }
+  .portfolio-location {
+    font-size: 12px; color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* TESTIMONIALS */
+  #testimonials {
+    background: var(--black);
+    position: relative; overflow: hidden;
+  }
+  #testimonials::before {
+    content: '"';
+    position: absolute; top: -40px; left: 40px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 400px; color: rgba(245,130,10,0.03);
+    line-height: 1; pointer-events: none;
+  }
+  .testimonials-header { margin-bottom: 60px; }
+  .testimonial-card {
+    background: var(--dark);
+    padding: 40px 36px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .testimonial-card:hover { background: var(--dark-2); }
+  .testimonial-quote-mark {
+    font-family: 'DM Serif Display', serif;
+    font-size: 60px; color: var(--orange);
+    line-height: 0.8; margin-bottom: 16px;
+    opacity: 0.6;
+  }
+  .testimonial-text {
+    font-size: 14px; font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.8; margin-bottom: 28px;
+  }
+  .testimonial-author-name {
+    font-size: 14px; font-weight: 600;
+    color: var(--ink);
+  }
+  .testimonial-author-role {
+    font-size: 12px; color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .testimonial-divider {
+    width: 24px; height: 2px;
+    background: var(--orange);
+    margin-bottom: 16px;
+  }
+
+  /* Testimonials — static “20+” anchor + infinite quote rail */
+  .testimonials-marquee-shell {
+    display: grid;
+    grid-template-columns: minmax(200px, 270px) minmax(0, 1fr);
+    gap: 1px;
+    background: var(--border-subtle);
+    align-items: stretch;
+    margin-left: -60px;
+    margin-right: -60px;
+    width: calc(100% + 120px);
+    margin-bottom: 0;
+  }
+  .testimonials-stat-anchor {
+    position: relative;
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px clamp(16px, 2.5vw, 24px) 24px clamp(40px, 5vw, 68px);
+  }
+  .testimonials-stat-anchor::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 18%;
+    bottom: 18%;
+    width: 1px;
+    background: linear-gradient(180deg, transparent 0%, rgba(245, 130, 10, 0.45) 22%, rgba(245, 130, 10, 0.45) 78%, transparent 100%);
+    pointer-events: none;
+  }
+  .testimonial-card--stat {
+    width: 100%;
+    max-width: 236px;
+    min-height: 260px;
+    margin: 0;
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(160deg, rgba(245, 130, 10, 0.09) 0%, var(--dark) 52%);
+    border: 1px solid rgba(245, 130, 10, 0.2);
+    border-left: 3px solid var(--orange);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 24px 48px rgba(0, 0, 0, 0.35);
+  }
+  .testimonial-card--stat:hover {
+    background: linear-gradient(160deg, rgba(245, 130, 10, 0.12) 0%, var(--dark-2) 55%);
+  }
+  .testimonial-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(44px, 6vw, 52px);
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .testimonial-stat-label {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    line-height: 1.35;
+  }
+  .testimonial-stat-region {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(24px, 3.5vw, 30px);
+    color: var(--ink);
+    line-height: 1.15;
+  }
+  .testimonial-card--stat .btn-primary {
+    display: inline-block;
+    margin-top: 28px;
+    font-size: 12px;
+    padding: 12px 24px;
+    align-self: flex-start;
+  }
+  .testimonials-marquee-bleed {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    min-width: 0;
+    background: var(--black);
+  }
+  .testimonials-marquee-mask {
+    overflow: hidden;
+    padding: 12px 0 20px;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 94%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 94%, transparent 100%);
+  }
+  .testimonials-marquee {
+    display: flex;
+    width: max-content;
+    align-items: stretch;
+    animation: testimonialsMarquee 105s linear infinite;
+    will-change: transform;
+  }
+  .testimonials-marquee:hover {
+    animation-play-state: paused;
+  }
+  @keyframes testimonialsMarquee {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+  .testimonials-marquee-group {
+    display: flex;
+    align-items: stretch;
+    flex-shrink: 0;
+    gap: 1px;
+    background: var(--border-subtle);
+    padding-right: clamp(32px, 5vw, 72px);
+  }
+  .testimonial-card--marquee {
+    flex: 0 0 auto;
+    width: clamp(300px, 34vw, 440px);
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+  }
+  .testimonial-card--marquee .testimonial-text {
+    flex: 1;
+  }
+  /* INSIGHTS (blog teasers) — horizontal slides, no extra section fill */
+  #blog {
+    background: transparent;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  @media (min-width: 901px) {
+    #blog {
+      padding-top: 88px;
+      padding-bottom: 88px;
+    }
+  }
+  .blog-slider-shell {
+    position: relative;
+    margin-top: clamp(24px, 3.5vw, 36px);
+  }
+  .blog-slider-hint {
+    display: none;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 14px;
+    text-align: center;
+  }
+  .blog-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 14px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0;
+    padding: 2px 0 14px;
+    margin: 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(245, 130, 10, 0.35) transparent;
+  }
+  .blog-grid::-webkit-scrollbar {
+    height: 6px;
+  }
+  .blog-grid::-webkit-scrollbar-thumb {
+    background: rgba(245, 130, 10, 0.35);
+    border-radius: 3px;
+  }
+  .blog-grid::after {
+    content: '';
+    flex: 0 0 4px;
+    scroll-snap-align: end;
+  }
+  a.blog-card {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 clamp(280px, 42vw, 380px);
+    scroll-snap-align: start;
+    min-height: 0;
+    border: 1px solid var(--border-subtle);
+    border-left: 2px solid var(--orange);
+    padding: 24px 22px;
+    background: var(--dark-2);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+  }
+  a.blog-card:hover {
+    background: var(--dark-2);
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  }
+  .blog-card-meta {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .blog-card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    line-height: 1.15;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  .blog-card-excerpt {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 0;
+    flex: 1;
+  }
+  .blog-card-more {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-top: 14px;
+  }
+  .blog-section-cta {
+    margin-top: 22px;
+  }
+  .blog-section-cta a {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--orange);
+    text-decoration: none;
+  }
+  .blog-section-cta a:hover { text-decoration: underline; }
+
+  /* CONTACT */
+  #contact { background: var(--dark); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+  }
+  .contact-img-wrap {
+    position: relative; overflow: hidden;
+  }
+  .contact-img {
+    width: 100%; height: 500px;
+    object-fit: cover;
+    filter: brightness(0.6) saturate(0.6);
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.45s ease;
+  }
+  .contact-img-wrap:hover .contact-img {
+    transform: scale(1.03);
+    filter: brightness(0.68) saturate(0.68);
+  }
+  .contact-form-section {}
+  .form-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px; color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .form-desc {
+    font-size: 14px; color: var(--text-muted);
+    margin-bottom: 32px;
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-input {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 14px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    -webkit-appearance: none;
+  }
+  .form-input::placeholder { color: var(--text-muted); }
+  .form-input:focus {
+    border-color: var(--orange);
+    background: rgba(245,130,10,0.04);
+  }
+  textarea.form-input { resize: vertical; min-height: 120px; }
+  .form-submit {
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 16px 40px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: none;
+    width: 100%;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    transition: background 0.2s;
+    margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--orange-dark); }
+  .form-submit:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--dark), 0 0 0 4px var(--orange-light);
+  }
+  .form-submit:disabled {
+    opacity: 0.55;
+    cursor: not-allowed !important;
+    pointer-events: none;
+  }
+  .form-submit:disabled.form-submit--sent {
+    opacity: 1;
+    background: var(--orange-dark);
+    pointer-events: none;
+  }
+  .contact-form-status {
+    margin-top: 16px;
+    padding: 12px 14px;
+    font-size: 14px;
+    line-height: 1.45;
+    border-radius: 2px;
+    display: none;
+  }
+  .contact-form-status.is-visible {
+    display: block;
+  }
+  .contact-form-status--success {
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    color: #bbf7d0;
+  }
+  .contact-form-status--error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    color: #fecaca;
+  }
+
+  /* NEWSLETTER — near brand orange (#F5820A), slightly eased */
+  .newsletter {
+    background: linear-gradient(165deg, #F28F1E 0%, #ED820F 45%, #E47A0A 100%);
+    border-top: 1px solid rgba(180, 85, 10, 0.35);
+    padding: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 40px;
+  }
+  .newsletter-text {}
+  .newsletter-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px; color: #1C1917;
+    line-height: 1;
+  }
+  .newsletter-sub {
+    font-size: 14px; color: rgba(28, 25, 23, 0.62);
+    margin-top: 6px;
+    max-width: 36ch;
+  }
+  .newsletter-form {
+    display: flex; gap: 0; flex: 0 0 420px;
+  }
+  .newsletter-input {
+    flex: 1;
+    background: #fff;
+    border: 1px solid rgba(28, 25, 23, 0.12);
+    border-right: none;
+    color: #1C1917;
+    caret-color: #0A0A0A;
+    padding: 14px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+  }
+  .newsletter-input:focus {
+    border-color: rgba(245, 130, 10, 0.45);
+    box-shadow: inset 0 0 0 1px rgba(245, 130, 10, 0.15);
+  }
+  .newsletter-input::placeholder { color: rgba(28, 25, 23, 0.38); }
+  .newsletter-btn {
+    background: var(--black);
+    color: var(--white);
+    border: none; padding: 14px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .newsletter-btn:hover { background: var(--dark-2); }
+  .newsletter-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--orange);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    border-top: 1px solid var(--border-subtle);
+    padding: 80px 60px 40px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 60px; margin-bottom: 60px;
+  }
+  .footer-brand {}
+  .footer-logo-wrap {
+    display: block;
+    margin-bottom: 16px;
+    background: transparent;
+    padding: 0;
+    border: none;
+  }
+  .footer-logo.logo-asset {
+    height: auto;
+    max-height: 160px;
+    width: auto;
+    max-width: min(560px, 94vw);
+    display: block;
+    object-fit: contain;
+    object-position: left center;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none !important;
+    background-color: transparent !important;
+    box-shadow: none;
+    border-radius: 0;
+    mix-blend-mode: normal;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+  .footer-tagline {
+    font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .footer-blurb {
+    font-size: 13px; color: var(--text-muted);
+    line-height: 1.7; max-width: 280px;
+  }
+  .footer-blurb strong {
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+  .footer-col-title {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--orange); }
+  .footer-contact-item {
+    font-size: 13px; color: var(--text-muted);
+    margin-bottom: 10px; line-height: 1.5;
+  }
+  .footer-contact-item a {
+    color: var(--text-muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-contact-item a:hover { color: var(--orange); }
+  /* Outrank .footer-contact-item a so CTA label stays legible on orange */
+  .footer-contact-item a.btn-primary {
+    color: var(--white);
+    background: var(--orange);
+  }
+  .footer-contact-item a.btn-primary:hover {
+    color: var(--white);
+    background: var(--orange-dark);
+  }
+  .footer-contact-cta {
+    margin-top: 16px;
+  }
+  .footer-contact-item a.btn-primary {
+    display: inline-block;
+    font-size: 12px;
+    padding: 10px 20px;
+    text-decoration: none;
+  }
+  .footer-bottom {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 28px;
+    display: flex; justify-content: flex-start; align-items: center;
+  }
+  .footer-legal-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .footer-legal {
+    font-size: 12px; color: var(--text-muted);
+  }
+  .footer-legal--credit {
+    font-size: 11px;
+    letter-spacing: 0.03em;
+  }
+  .footer-legal .footer-legal-name {
+    color: var(--orange);
+    font-weight: 800;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes statItemIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal-fade-only {
+    opacity: 0;
+    transform: none;
+    transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-fade-only.visible {
+    opacity: 1;
+  }
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+  .reveal.reveal-scale {
+    transform: translateY(28px) scale(0.96);
+  }
+  .reveal.reveal-scale.visible {
+    transform: translateY(0) scale(1);
+  }
+  .reveal-slide-left {
+    transform: translateX(-28px);
+  }
+  .reveal-slide-left.visible {
+    transform: translateX(0);
+  }
+  .reveal-slide-right {
+    transform: translateX(28px);
+  }
+  .reveal-slide-right.visible {
+    transform: translateX(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+
+  .reveal-children > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-children.visible > *:nth-child(1) { transition-delay: 0.05s; }
+  .reveal-children.visible > *:nth-child(2) { transition-delay: 0.12s; }
+  .reveal-children.visible > *:nth-child(3) { transition-delay: 0.19s; }
+  .reveal-children.visible > *:nth-child(4) { transition-delay: 0.26s; }
+  .reveal-children.visible > *:nth-child(5) { transition-delay: 0.33s; }
+  .reveal-children.visible > *:nth-child(6) { transition-delay: 0.4s; }
+  .reveal-children.visible > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Layered shadows; strengths tuned down — WebKit/Safari paints text-shadow hotter than Chrome */
+  @keyframes orangeGlow {
+    0%, 100% {
+      text-shadow:
+        0 0 0 rgba(245, 130, 10, 0),
+        0 0 1px rgba(245, 130, 10, 0.07);
+    }
+    50% {
+      text-shadow:
+        0 0 5px rgba(245, 130, 10, 0.4),
+        0 0 16px rgba(245, 130, 10, 0.28),
+        0 0 30px rgba(245, 130, 10, 0.16),
+        0 0 44px rgba(245, 130, 10, 0.07);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero-bg { animation: none !important; }
+    .hero-headline-accent { animation: none !important; will-change: auto; }
+    .reveal, .reveal.visible,
+    .reveal-slide-left, .reveal-slide-right, .reveal.reveal-scale,
+    .reveal-fade-only, .reveal-fade-only.visible,
+    .reveal-children > *, .reveal-children.visible > * {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .partners-marquee {
+      animation: none !important;
+      transform: none !important;
+      width: 100% !important;
+      max-width: 920px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+      row-gap: 20px;
+    }
+    .partners-marquee-group:last-child {
+      display: none !important;
+    }
+    .partners-marquee-group {
+      padding-right: 0 !important;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px !important;
+    }
+    .testimonials-marquee-shell {
+      grid-template-columns: 1fr !important;
+      width: 100% !important;
+      max-width: 920px;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    .testimonials-stat-anchor {
+      padding: 24px 20px !important;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .testimonials-stat-anchor::after {
+      display: none;
+    }
+    .testimonial-card--stat {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .testimonials-marquee {
+      animation: none !important;
+      transform: none !important;
+      width: 100% !important;
+      max-width: 100%;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+      row-gap: 1px;
+    }
+    .testimonials-marquee-group:last-child {
+      display: none !important;
+    }
+    .testimonials-marquee-group {
+      padding-right: 0 !important;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      gap: 1px !important;
+      background: var(--border-subtle);
+    }
+    .testimonial-card--marquee {
+      width: 100%;
+      max-width: 520px;
+      min-height: 0;
+    }
+    .hero-eyebrow, .hero-headline, .hero-sub, .hero-actions, .stats-bar {
+      opacity: 1 !important;
+      animation: none !important;
+      transform: none !important;
+    }
+    .stats-bar .stat-item {
+      opacity: 1 !important;
+      animation: none !important;
+      transform: none !important;
+    }
+    .service-card:hover .service-img {
+      transform: none !important;
+    }
+    a.blog-card:hover {
+      transform: none !important;
+      box-shadow: none !important;
+    }
+    .contact-img-wrap:hover .contact-img {
+      transform: none !important;
+    }
+    .kete-map-marker-pulse { animation: none !important; }
+    .hero-cursor-reveal { display: none !important; }
+    #services .scroll-card-slide,
+    #portfolio .scroll-card-slide {
+      position: relative !important;
+      min-height: 0 !important;
+      display: block !important;
+      padding: 0 !important;
+      z-index: auto !important;
+    }
+    #services .services-grid {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      background: var(--border-subtle) !important;
+      gap: 1px !important;
+    }
+    #portfolio .portfolio-grid {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: 2px !important;
+      background: var(--dark) !important;
+    }
+    @media (min-width: 901px) {
+      #services .services-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+      #portfolio .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+      #portfolio .portfolio-grid > .scroll-card-slide:has(.portfolio-item.featured) {
+        grid-column: span 2 !important;
+      }
+      #portfolio .portfolio-item.featured {
+        aspect-ratio: 16/9 !important;
+        grid-column: unset !important;
+      }
+    }
+    #services .scroll-card-slide .service-card {
+      width: 100% !important;
+      max-height: none !important;
+      min-height: 0 !important;
+      padding: 48px 36px !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+    }
+    #services .scroll-card-slide .service-img {
+      position: relative !important;
+      inset: auto !important;
+      width: 100% !important;
+      height: 200px !important;
+      margin-bottom: 28px !important;
+      filter: brightness(0.7) saturate(0.6) !important;
+    }
+    #services .scroll-card-slide .service-card::after {
+      display: none !important;
+    }
+    #services .scroll-card-slide .service-num {
+      color: rgba(245, 130, 10, 0.08) !important;
+    }
+    #services .scroll-card-slide .service-title {
+      font-size: 18px !important;
+      color: var(--ink) !important;
+    }
+    #services .scroll-card-slide .service-desc {
+      color: var(--text-secondary) !important;
+      text-transform: none !important;
+      font-size: 14px !important;
+    }
+    #portfolio .scroll-card-slide .portfolio-item {
+      width: 100% !important;
+      height: auto !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      aspect-ratio: 4/3 !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+    }
+    #portfolio .scroll-card-slide .portfolio-img {
+      filter: brightness(0.6) saturate(0.7) !important;
+    }
+    #portfolio .scroll-card-slide .portfolio-overlay {
+      background: linear-gradient(to top, rgba(10, 10, 10, 0.9) 0%, transparent 60%) !important;
+    }
+    #portfolio .scroll-card-slide .portfolio-item:hover .portfolio-img {
+      filter: brightness(0.52) saturate(0.62) !important;
+    }
+    #portfolio .scroll-card-slide .portfolio-item:hover .portfolio-overlay {
+      background: rgba(10, 10, 10, 0.48) !important;
+    }
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    :root {
+      /* Clear fixed nav + notch; logo uses modest scale so it doesn’t paint past the edge */
+      --nav-safe-top: 5.5rem;
+      --nav-safe-top: calc(env(safe-area-inset-top, 0px) + 5.35rem);
+    }
+    main#main {
+      overflow-x: visible;
+      max-width: 100%;
+    }
+    nav { padding: 14px max(16px, env(safe-area-inset-left)) 14px max(16px, env(safe-area-inset-right)); flex-wrap: nowrap; min-height: 0; }
+    nav.scrolled { padding: 10px max(16px, env(safe-area-inset-left)) 10px max(16px, env(safe-area-inset-right)); }
+    .nav-logo {
+      margin-right: clamp(28px, 8vw, 64px);
+      min-width: 0;
+    }
+    .nav-logo img.logo-asset {
+      height: 40px;
+      max-width: min(200px, 52vw);
+      transform: scale(1.48) translateZ(0);
+      transform-origin: left center;
+    }
+    .nav-toggle { display: flex; }
+    .nav-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      height: 100dvh;
+      width: min(300px, 86vw);
+      margin: 0;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: 28px;
+      padding: 88px 24px 32px;
+      background: rgba(12, 12, 12, 0.98);
+      border-left: 1px solid var(--border-subtle);
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 99;
+      box-shadow: -24px 0 48px rgba(0,0,0,0.35);
+    }
+    .nav-panel.is-open {
+      transform: translateX(0);
+    }
+    .nav-links {
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+    }
+    .nav-links li { border-bottom: 1px solid var(--border-subtle); }
+    .nav-links a {
+      display: block;
+      padding: 16px 0;
+    }
+    .nav-panel .nav-cta {
+      text-align: center;
+      width: 100%;
+      justify-content: center;
+    }
+    body.nav-open {
+      overflow: hidden;
+    }
+    #partners { padding: 24px 0; }
+    section { padding: 80px 24px; }
+    .hero-content { padding: 0 max(16px, env(safe-area-inset-left)) 60px max(16px, env(safe-area-inset-right)); box-sizing: border-box; max-width: 100%; }
+    .stats-bar {
+      padding: 24px max(16px, env(safe-area-inset-left)) 24px max(16px, env(safe-area-inset-right));
+      flex-direction: column;
+      gap: 20px;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--border-subtle); padding: 0 0 20px; }
+    .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+    #about { padding: 80px 24px; }
+    .about-layout { grid-template-columns: 1fr; gap: 40px; }
+    .about-copy { max-width: none; }
+    .map-container {
+      justify-self: stretch;
+      width: 100%;
+      max-width: none;
+    }
+    .map-leaflet-shell {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 520px;
+    }
+    .map-leaflet {
+      height: 320px;
+      min-height: 280px;
+    }
+    .map-container .map-legend-hint { text-align: center; }
+    .map-container .location-cards { justify-content: flex-start; }
+    .services-grid { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .portfolio-item.featured { grid-column: span 1; aspect-ratio: 4/3; }
+
+    /* CardsParallax-style: full-viewport sticky stack (services + portfolio) */
+    #services,
+    #portfolio {
+      padding-bottom: clamp(48px, 11vw, 72px);
+    }
+    #services .services-header,
+    #portfolio .portfolio-header {
+      margin-bottom: 22px;
+    }
+    #services .services-grid,
+    #portfolio .portfolio-grid {
+      display: block;
+      background: transparent;
+      gap: 0;
+    }
+    #services .scroll-card-slide,
+    #portfolio .scroll-card-slide {
+      display: flex;
+      justify-content: center;
+      /* Same vertical band for every slide (reads like one deck, not “first up / rest centered”). */
+      align-items: flex-start;
+      padding-top: clamp(8px, 2vh, 16px);
+      padding-bottom: clamp(16px, 5vh, 36px);
+      /* Opaque paint + slight gradient so full-slide layers aren’t flat slabs. */
+      background: linear-gradient(180deg, #0b0b0b 0%, var(--black) 45%, #080808 100%);
+      position: -webkit-sticky;
+      position: sticky;
+      top: max(0px, var(--nav-safe-top, 5.5rem));
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+      box-sizing: border-box;
+      isolation: isolate;
+    }
+    #portfolio .scroll-card-slide {
+      background: linear-gradient(180deg, #141414 0%, var(--dark) 45%, #0e0e0e 100%);
+    }
+    /* Shorter runway than 100vh so each card “handoff” feels quicker; first beat still clears the header. */
+    #services .scroll-card-slide:first-child,
+    #portfolio .scroll-card-slide:first-child {
+      min-height: min(84svh, 40rem);
+      min-height: min(84dvh, 40rem);
+    }
+    #services .scroll-card-slide:not(:first-child),
+    #portfolio .scroll-card-slide:not(:first-child) {
+      min-height: min(88svh, 38rem);
+      min-height: min(88dvh, 38rem);
+    }
+    /* Last slide: only as tall as the card + padding — avoids a long empty scroll after the stack ends. */
+    #services .scroll-card-slide:last-child,
+    #portfolio .scroll-card-slide:last-child {
+      min-height: auto;
+      padding-bottom: clamp(20px, 5vh, 40px);
+    }
+    /* Scroll stack + staggered reveal fight each other — keep cards present for scroll-linked motion. */
+    #services .services-grid.reveal-children > .scroll-card-slide,
+    #services .services-grid.reveal-children.visible > .scroll-card-slide {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    #portfolio .scroll-card-slide .portfolio-item.reveal,
+    #portfolio .scroll-card-slide .portfolio-item.reveal.visible {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    #services .scroll-card-slide:nth-child(1),
+    #portfolio .scroll-card-slide:nth-child(1) { z-index: 1; }
+    #services .scroll-card-slide:nth-child(2),
+    #portfolio .scroll-card-slide:nth-child(2) { z-index: 2; }
+    #services .scroll-card-slide:nth-child(3),
+    #portfolio .scroll-card-slide:nth-child(3) { z-index: 3; }
+    #portfolio .scroll-card-slide:nth-child(4) { z-index: 4; }
+    #portfolio .scroll-card-slide:nth-child(5) { z-index: 5; }
+    #portfolio .scroll-card-slide:nth-child(6) { z-index: 6; }
+    #services .scroll-card-slide .service-card {
+      position: relative;
+      width: min(100%, 36rem);
+      min-height: 17.5rem;
+      max-height: min(70vh, 26rem);
+      padding: 2.75rem 1.75rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: stretch;
+      overflow: hidden;
+      box-shadow: 0 1.25rem 3.75rem rgba(0, 0, 0, 0.55);
+      border-radius: 4px;
+      background: var(--dark);
+    }
+    #services .scroll-card-slide .service-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      margin: 0;
+      z-index: 0;
+      filter: brightness(0.45) saturate(0.75);
+    }
+    #services .scroll-card-slide .service-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(to top, rgba(10, 10, 10, 0.94) 0%, rgba(10, 10, 10, 0.35) 45%, transparent 78%);
+      pointer-events: none;
+    }
+    #services .scroll-card-slide .service-num,
+    #services .scroll-card-slide .service-title,
+    #services .scroll-card-slide .service-desc,
+    #services .scroll-card-slide .service-arrow {
+      position: relative;
+      z-index: 2;
+    }
+    #services .scroll-card-slide .service-num {
+      color: rgba(245, 130, 10, 0.35);
+    }
+    #services .scroll-card-slide .service-title {
+      font-size: clamp(1.65rem, 7.5vw, 2.35rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    #services .scroll-card-slide .service-desc {
+      color: rgba(250, 250, 248, 0.88);
+      font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+      line-height: 1.45;
+      text-transform: lowercase;
+      letter-spacing: 0.02em;
+    }
+    #services .scroll-card-slide .service-arrow {
+      color: var(--orange-light);
+    }
+    #portfolio .scroll-card-slide .portfolio-item {
+      position: relative;
+      width: min(100%, 36rem);
+      height: min(70vh, 26rem);
+      min-height: 17.5rem;
+      aspect-ratio: unset;
+      overflow: hidden;
+      box-shadow: 0 1.25rem 3.75rem rgba(0, 0, 0, 0.55);
+      border-radius: 4px;
+    }
+    #portfolio .scroll-card-slide .portfolio-title {
+      font-size: clamp(1.15rem, 4.5vw, 1.5rem);
+      line-height: 1.25;
+    }
+    #portfolio .scroll-card-slide .portfolio-img {
+      filter: brightness(0.5) saturate(0.75);
+    }
+    #portfolio .scroll-card-slide .portfolio-overlay {
+      background: linear-gradient(to top, rgba(10, 10, 10, 0.92) 0%, transparent 62%);
+    }
+    #portfolio .scroll-card-slide .portfolio-item:hover .portfolio-img {
+      filter: brightness(0.58) saturate(0.68);
+    }
+    #portfolio .scroll-card-slide .portfolio-item:hover .portfolio-overlay {
+      background: rgba(10, 10, 10, 0.5);
+    }
+    .testimonials-marquee-shell {
+      grid-template-columns: 1fr;
+      margin-left: -24px;
+      margin-right: -24px;
+      width: calc(100% + 48px);
+      box-sizing: border-box;
+    }
+    .testimonials-stat-anchor {
+      padding: 18px 24px 20px;
+    }
+    .testimonials-stat-anchor::after {
+      display: none;
+    }
+    .testimonial-card--stat {
+      max-width: 100%;
+    }
+    .testimonials-marquee-bleed {
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .testimonials-marquee-mask {
+      padding: 14px 0 18px;
+      mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
+    }
+    .testimonials-marquee {
+      animation-duration: 72s;
+      animation-play-state: running;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+    .testimonial-card--marquee {
+      width: min(340px, 88vw);
+      min-height: 240px;
+    }
+    #blog {
+      padding-top: 52px;
+      padding-bottom: 52px;
+    }
+    .blog-slider-hint {
+      display: block;
+    }
+    a.blog-card {
+      flex-basis: min(320px, 86vw);
+      padding: 22px 20px;
+    }
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-img { height: 260px; }
+    .newsletter { flex-direction: column; padding: 40px 24px; }
+    .newsletter-form { flex: 1; width: 100%; }
+    /* Footer: was .footer (no such class) — use footer; single column reads cleanly on narrow screens */
+    footer {
+      padding: 48px max(20px, env(safe-area-inset-left, 0px)) 32px max(20px, env(safe-area-inset-right, 0px));
+      padding-bottom: max(32px, calc(16px + env(safe-area-inset-bottom, 0px)));
+    }
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .footer-logo.logo-asset {
+      max-height: 56px;
+      max-width: min(220px, 70vw);
+      margin: 0 auto 0 0;
+    }
+    .footer-tagline {
+      margin-bottom: 12px;
+    }
+    .footer-blurb {
+      max-width: none;
+      font-size: 13px;
+    }
+    .footer-col-title {
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+    }
+    .footer-links a {
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .footer-contact-item {
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+    .footer-contact-item a:not(.btn-primary) {
+      display: inline-block;
+      max-width: 100%;
+    }
+    footer .footer-contact-item a.btn-primary {
+      display: block;
+      width: 100%;
+      max-width: 280px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      text-align: center;
+      padding-top: 24px;
+    }
+    .footer-legal-stack {
+      align-items: center;
+      text-align: center;
+    }
+    .footer-legal {
+      font-size: 11px;
+      line-height: 1.5;
+      max-width: 22rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<!-- NAV -->
+<nav id="navbar" aria-label="Primary">
+  <a href="#home" class="nav-logo">
+    <img class="logo-asset" src="images/Gemini_Generated_Image_iw9hnxiw9hnxiw9h-Photoroom.svg" width="1280" height="1277" alt="KETE — Kern Elec Tech Experts" fetchpriority="high" decoding="async"/>
+  </a>
+  <div class="nav-panel" id="nav-panel">
+    <ul class="nav-links" id="nav-menu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#partners">Partners</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="blog/index.html">Insights</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get Started</a>
+  </div>
+  <div class="nav-tools">
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-media" aria-hidden="true">
+    <div class="hero-bg"></div>
+    <div class="hero-gradient"></div>
+    <div class="hero-grid-overlay"></div>
+  </div>
+  <div class="hero-cursor-reveal" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Electrical · Instrumentation · Control</div>
+    <h1 class="hero-headline">
+      Precision<br/>
+      Electrical &<br/>
+      <span class="hero-headline-accent">Solar</span>, built<br/>
+      for scale
+    </h1>
+    <p class="hero-sub">From rooftop arrays to refinery-grade instrumentation, we deliver reliable energy and control systems across India and Nepal—backed by twenty years on the ground.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">Explore Services →</a>
+      <a href="#about" class="btn-ghost">Our Footprint</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-value stat-value--count" data-target="6" data-duration="1280"><span class="stat-v-prefix">$</span><span class="stat-v-num">0</span><span class="stat-v-suffix">M+</span></div>
+    <div class="stat-label">Cost Savings<br/>Delivered</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value stat-value--count" data-target="120" data-duration="1480"><span class="stat-v-num">0</span><span class="stat-v-suffix">MW</span></div>
+    <div class="stat-label">Installed<br/>Capacity</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value stat-value--count" data-target="45" data-duration="1320"><span class="stat-v-num">0</span><span class="stat-v-suffix">K</span></div>
+    <div class="stat-label">Tons CO₂<br/>Saved</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value stat-value--count" data-target="20" data-duration="1180"><span class="stat-v-num">0</span><span class="stat-v-suffix">+</span></div>
+    <div class="stat-label">Years of<br/>Experience</div>
+  </div>
+</div>
+
+<!-- PARTNERS — logo ribbon only (label for a11y) -->
+<section id="partners" aria-label="Brands and partners">
+  <div class="partners-inner reveal-fade-only">
+    <p id="partners-marquee-desc" class="partners-visually-hidden">Partner brands: SWICH, Gensol, Hero Future Energies, Gentari, and others.</p>
+    <div class="partners-track" role="region" aria-labelledby="partners-marquee-desc">
+      <div class="partners-marquee-mask">
+        <div class="partners-marquee" aria-hidden="true">
+          <div class="partners-marquee-group">
+            <div class="partner-marquee-item"><img src="images/WhatsApp%20Image%202026-03-23%20at%2015.16.53%20%281%29-Photoroom.webp" alt="SWICH" class="partner-logo partner-logo--swich" width="1280" height="1280" loading="lazy" decoding="async"/></div>
+            <div class="partner-marquee-item"><img src="images/WhatsApp%20Image%202026-03-23%20at%2015.16.52-Photoroom.webp" alt="Gensol" class="partner-logo partner-logo--gensol" width="1280" height="720" loading="lazy" decoding="async"/></div>
+            <div class="partner-marquee-item"><img src="images/WhatsApp%20Image%202026-03-23%20at%2015.16.53-Photoroom.webp" alt="Hero Future Energies" class="partner-logo partner-logo--hero" width="398" height="140" loading="lazy" decoding="async"/></div>
+            <div class="partner-marquee-item"><img src="images/logo-removebg-preview.png" alt="Partner logo" class="partner-logo partner-logo--hero" width="400" height="120" loading="lazy" decoding="async"/></div>
+            <div class="partner-marquee-item"><img src="images/final_logo%202.svg" alt="Partner logo" class="partner-logo partner-logo--final" width="240" height="80" loading="lazy" decoding="async"/></div>
+            <div class="partner-marquee-item"><img src="images/gentari-icon-stacked-removebg-preview.png" alt="Gentari" class="partner-logo" width="200" height="200" loading="lazy" decoding="async"/></div>
+            <div class="partner-marquee-item"><img src="images/LOGO_02-removebg-preview.png" alt="Partner logo" class="partner-logo partner-logo--logo02" width="400" height="120" loading="lazy" decoding="async"/></div>
+          </div>
+          <div class="partners-marquee-group">
+            <div class="partner-marquee-item"><img src="images/WhatsApp%20Image%202026-03-23%20at%2015.16.53%20%281%29-Photoroom.webp" alt="SWICH" class="partner-logo partner-logo--swich" width="1280" height="1280" loading="lazy" decoding="async"/></div>
+            <div class="partner-marquee-item"><img src="images/WhatsApp%20Image%202026-03-23%20at%2015.16.52-Photoroom.webp" alt="Gensol" class="partner-logo partner-logo--gensol" width="1280" height="720" loading="lazy" decoding="async"/></div>
+            <div class="partner-marquee-item"><img src="images/WhatsApp%20Image%202026-03-23%20at%2015.16.53-Photoroom.webp" alt="Hero Future Energies" class="partner-logo partner-logo--hero" width="398" height="140" loading="lazy" decoding="async"/></div>
+            <div class="partner-marquee-item"><img src="images/logo-removebg-preview.png" alt="Partner logo" class="partner-logo partner-logo--hero" width="400" height="120" loading="lazy" decoding="async"/></div>
+            <div class="partner-marquee-item"><img src="images/final_logo%202.svg" alt="Partner logo" class="partner-logo partner-logo--final" width="240" height="80" loading="lazy" decoding="async"/></div>
+            <div class="partner-marquee-item"><img src="images/gentari-icon-stacked-removebg-preview.png" alt="Gentari" class="partner-logo" width="200" height="200" loading="lazy" decoding="async"/></div>
+            <div class="partner-marquee-item"><img src="images/LOGO_02-removebg-preview.png" alt="Partner logo" class="partner-logo partner-logo--logo02" width="400" height="120" loading="lazy" decoding="async"/></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-layout">
+    <div class="about-copy">
+      <div class="section-label reveal">Coverage</div>
+      <h2 class="section-headline reveal reveal-delay-1">Experts Across<br/>India & Nepal</h2>
+      <p class="section-sub reveal reveal-delay-2">Delivering precision energy systems across the subcontinent — from heritage sites in Kolkata to refineries in Punjab.</p>
+      <div class="about-features reveal reveal-children">
+        <div class="feature-card">
+          <div class="feature-title">Environment-Friendly</div>
+          <div class="feature-desc">We lead sustainable solar solutions that help reduce carbon footprints and protect our planet for future generations.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">Low Maintenance</div>
+          <div class="feature-desc">Our solar systems are designed for durability and require minimal maintenance while maximizing efficiency and performance.</div>
+        </div>
+      </div>
+    </div>
+    <div class="map-container reveal" id="map-section">
+      <div class="map-leaflet-shell" id="map-leaflet-shell">
+        <div id="kete-coverage-map" class="map-leaflet" role="region" aria-label="Map: KETE project sites across India and Nepal"></div>
+        <figure class="map-static-fallback" id="map-static-fallback" aria-hidden="true">
+          <img src="images/india-nepal-geo.svg" alt="Map of India and Nepal with project regions" width="320" height="360" loading="lazy" decoding="async"/>
+        </figure>
+      </div>
+      <p class="map-legend-hint">Real map · click markers or photos · Zoom with +/− · © OpenStreetMap · © CARTO</p>
+      <div class="location-cards-shell">
+        <div class="location-cards-fade" id="location-cards-fade" aria-hidden="true"></div>
+        <div class="location-cards" id="location-cards-strip" aria-label="Project photo strip — select to focus map" aria-describedby="location-cards-more-help">
+        <figure class="location-card" data-map-index="0" tabindex="0" role="button" aria-label="Show Punjab on map">
+          <div class="location-card-photo"><img src="images/project_hml.webp" alt="" width="120" height="120" loading="lazy" decoding="async"/></div>
+          <figcaption class="location-card-cap">Punjab<span class="location-card-sub">Gensol · HMEL</span></figcaption>
+        </figure>
+        <figure class="location-card" data-map-index="1" tabindex="0" role="button" aria-label="Show West Bengal on map">
+          <div class="location-card-photo"><img src="images/sunville_heritage.webp" alt="" width="120" height="120" loading="lazy" decoding="async"/></div>
+          <figcaption class="location-card-cap">West Bengal<span class="location-card-sub">Sunville · Kolkata</span></figcaption>
+        </figure>
+        <figure class="location-card" data-map-index="2" tabindex="0" role="button" aria-label="Show Karnataka on map">
+          <div class="location-card-photo"><img src="images/project_mukka.webp" alt="" width="120" height="120" loading="lazy" decoding="async"/></div>
+          <figcaption class="location-card-cap">Karnataka<span class="location-card-sub">Mukka Proteins</span></figcaption>
+        </figure>
+        <figure class="location-card" data-map-index="3" tabindex="0" role="button" aria-label="Show Andhra Pradesh on map">
+          <div class="location-card-photo"><img src="images/project_omni.webp" alt="" width="120" height="120" loading="lazy" decoding="async"/></div>
+          <figcaption class="location-card-cap">Andhra Pradesh<span class="location-card-sub">Hero Future · Sri City</span></figcaption>
+        </figure>
+        <figure class="location-card" data-map-index="4" tabindex="0" role="button" aria-label="Show Nepal on map">
+          <div class="location-card-photo"><img src="images/mission.webp" alt="" width="120" height="120" loading="lazy" decoding="async"/></div>
+          <figcaption class="location-card-cap">Nepal<span class="location-card-sub">KETE operations</span></figcaption>
+        </figure>
+        <figure class="location-card" data-map-index="5" tabindex="0" role="button" aria-label="Show Uttar Pradesh Rae Bareli on map">
+          <div class="location-card-photo"><img src="images/WhatsApp%20Image%202026-04-01%20at%2021.46.33.webp" alt="" width="120" height="120" loading="lazy" decoding="async"/></div>
+          <figcaption class="location-card-cap">Uttar Pradesh<span class="location-card-sub">ITI Limited · Rae Bareli · 330 kW</span></figcaption>
+        </figure>
+        </div>
+        <p class="location-cards-more is-hidden" id="location-cards-more">
+          <span id="location-cards-more-help" class="partners-visually-hidden">Scroll horizontally to see every project location.</span>
+          <span class="location-cards-more-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="location-cards-more-label">Slide for more sites</span>
+          <span class="location-cards-more-arrows" aria-hidden="true">›››</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label reveal">What we do</div>
+      <h2 class="section-headline reveal reveal-delay-1">Our Expert<br/>Services</h2>
+      <p class="section-sub reveal reveal-delay-2">Commercial, industrial, and residential — full lifecycle support.</p>
+    </div>
+  </div>
+  <div class="services-grid reveal reveal-children">
+    <div class="scroll-card-slide">
+      <a class="service-card" href="services/solar-installation.html">
+        <img src="images/kete-13.webp" alt="Solar Installation" class="service-img" width="800" height="200" loading="lazy" decoding="async"/>
+        <div class="service-num">01</div>
+        <h3 class="service-title">Solar Installation</h3>
+        <p class="service-desc">Advanced solar installation services for commercial, industrial, and community energy needs — engineered to perform.</p>
+        <span class="service-arrow" aria-hidden="true">Learn More →</span>
+      </a>
+    </div>
+    <div class="scroll-card-slide">
+      <a class="service-card" href="services/electrical-instrumentation.html">
+        <img src="images/electrical.webp" alt="Electrical & Instrumentation" class="service-img" width="800" height="200" loading="lazy" decoding="async"/>
+        <div class="service-num">02</div>
+        <h3 class="service-title">Electrical & Instrumentation</h3>
+        <p class="service-desc">Expert electrical and instrumentation services with focus on safety, quality, and compliance — refinery to rooftop.</p>
+        <span class="service-arrow" aria-hidden="true">Learn More →</span>
+      </a>
+    </div>
+    <div class="scroll-card-slide">
+      <a class="service-card" href="services/residential-solar.html">
+        <img src="images/rooftop.webp" alt="Residential Solar" class="service-img" width="800" height="200" loading="lazy" decoding="async"/>
+        <div class="service-num">03</div>
+        <h3 class="service-title">Residential Solar</h3>
+        <p class="service-desc">Refined solar solutions for modern homes as a lifestyle investment — sustainable living with zero compromise.</p>
+        <span class="service-arrow" aria-hidden="true">Learn More →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="portfolio-header">
+    <div class="section-label reveal">Portfolio</div>
+    <h2 class="section-headline reveal reveal-delay-1">Real Projects,<br/>Real Impact</h2>
+    <p class="section-sub reveal reveal-delay-2">From rooftops to heritage sites — work that performs in the field.</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="scroll-card-slide">
+      <div class="portfolio-item featured reveal reveal-scale">
+        <img src="images/sunville_heritage.webp" alt="St. John's Church Heritage Solar" class="portfolio-img" width="1920" height="1080" loading="lazy" decoding="async"/>
+        <div class="portfolio-overlay">
+          <div class="portfolio-client">Sunville Renewable Energy</div>
+          <div class="portfolio-title">St. John's Church Heritage Solar</div>
+          <div class="portfolio-location">Kolkata, West Bengal</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-card-slide">
+      <div class="portfolio-item reveal reveal-delay-1 reveal-scale">
+        <img src="images/project_omni.webp" alt="Hero Future Energies" class="portfolio-img" width="1200" height="900" loading="lazy" decoding="async"/>
+        <div class="portfolio-overlay">
+          <div class="portfolio-client">Hero Future Energies</div>
+          <div class="portfolio-title">19.5 KWp Solar Rooftop Plant</div>
+          <div class="portfolio-location">Andhra Pradesh</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-card-slide">
+      <div class="portfolio-item reveal">
+        <img src="images/project_mukka.webp" alt="Mukka Proteins" class="portfolio-img" width="1200" height="900" loading="lazy" decoding="async"/>
+        <div class="portfolio-overlay">
+          <div class="portfolio-client">Mukka Proteins Limited</div>
+          <div class="portfolio-title">Solar Rooftop Power Plant</div>
+          <div class="portfolio-location">Karnataka</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-card-slide">
+      <div class="portfolio-item reveal reveal-delay-1">
+        <img src="images/project_hml.webp" alt="HMEL Refinery Solar" class="portfolio-img" width="1200" height="900" loading="lazy" decoding="async"/>
+        <div class="portfolio-overlay">
+          <div class="portfolio-client">Gensol Ltd.</div>
+          <div class="portfolio-title">HMEL Refinery Solar Installation</div>
+          <div class="portfolio-location">Punjab</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-card-slide">
+      <div class="portfolio-item reveal reveal-delay-2">
+        <img src="images/sunville_indian.webp" alt="Indian Oil Petrol Pump Solar" class="portfolio-img" width="1200" height="900" loading="lazy" decoding="async"/>
+        <div class="portfolio-overlay">
+          <div class="portfolio-client">Sunville Renewable Energy</div>
+          <div class="portfolio-title">Indian Oil Petrol Pump Solar</div>
+          <div class="portfolio-location">Kolkata, West Bengal</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-card-slide">
+      <div class="portfolio-item reveal reveal-delay-3">
+        <img src="images/sunville_entertainment.webp" alt="Entertainment Colour Studio Solar" class="portfolio-img" width="1200" height="900" loading="lazy" decoding="async"/>
+        <div class="portfolio-overlay">
+          <div class="portfolio-client">Sunville Renewable Energy</div>
+          <div class="portfolio-title">Entertainment Colour Studio Solar</div>
+          <div class="portfolio-location">Kolkata, West Bengal</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-card-slide">
+      <div class="portfolio-item reveal">
+        <img src="images/WhatsApp%20Image%202026-04-01%20at%2021.46.33.webp" alt="330 kW solar rooftop at ITI Limited, Rae Bareli" class="portfolio-img" width="1200" height="900" loading="lazy" decoding="async"/>
+        <div class="portfolio-overlay">
+          <div class="portfolio-client">ITI Limited</div>
+          <div class="portfolio-title">330 kW Solar Rooftop</div>
+          <div class="portfolio-location">Doorbhash Nagar, Rae Bareli-229010, UP, India</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testimonials-header">
+    <div class="section-label reveal">Testimonials</div>
+    <h2 class="section-headline reveal reveal-delay-1">Words From<br/>Our Clients</h2>
+    <p class="section-sub reveal reveal-delay-2">Trusted by developers and operators across India and Nepal.</p>
+  </div>
+  <p id="testimonials-marquee-desc" class="partners-visually-hidden">Client quotes scroll beside a static summary. Voices: Sanjeet Singh, Zahir Shah, Amrendra Kumar, Mayank Rohilla, and Sandip Shah.</p>
+  <div class="testimonials-marquee-shell">
+    <aside class="testimonials-stat-anchor" aria-label="Project scale at a glance">
+      <div class="testimonial-card testimonial-card--stat">
+        <div class="testimonial-stat-num">20+</div>
+        <div class="testimonial-stat-label">Major Projects<br/>Delivered</div>
+        <div class="testimonial-stat-region">Across India<br/>& Nepal</div>
+        <a href="#contact" class="btn-primary">Work With Us →</a>
+      </div>
+    </aside>
+    <div class="testimonials-marquee-bleed">
+      <div class="testimonials-marquee-mask" role="region" aria-labelledby="testimonials-marquee-desc">
+        <div class="testimonials-marquee" aria-hidden="true">
+          <div class="testimonials-marquee-group">
+            <div class="testimonial-card testimonial-card--marquee">
+              <div class="testimonial-quote-mark">"</div>
+              <div class="testimonial-divider"></div>
+              <p class="testimonial-text">KETE made our rooftop solar project in Chennai completely hassle-free. From planning to installation, their team handled everything with precision. The system runs smoothly every day.</p>
+              <div class="testimonial-author-name">Sanjeet Singh</div>
+              <div class="testimonial-author-role">General Manager O&amp;M, Hero Future Energies</div>
+            </div>
+            <div class="testimonial-card testimonial-card--marquee">
+              <div class="testimonial-quote-mark">"</div>
+              <div class="testimonial-divider"></div>
+              <p class="testimonial-text">Our 460KW rooftop project in Mangalore was a big undertaking, and KETE handled it brilliantly. Clear communication and professionalism throughout. The system performs reliably.</p>
+              <div class="testimonial-author-name">Zahir Shah</div>
+              <div class="testimonial-author-role">Director, Switch Solar Solutions</div>
+            </div>
+            <div class="testimonial-card testimonial-card--marquee">
+              <div class="testimonial-quote-mark">"</div>
+              <div class="testimonial-divider"></div>
+              <p class="testimonial-text">KETE took care of our rooftop projects in Bhatinda with great expertise. They optimized the system for our daily energy needs, completed on time, and remain responsive.</p>
+              <div class="testimonial-author-name">Amrendra Kumar</div>
+              <div class="testimonial-author-role">SCM Manager, Gensol</div>
+            </div>
+            <div class="testimonial-card testimonial-card--marquee">
+              <div class="testimonial-quote-mark">"</div>
+              <div class="testimonial-divider"></div>
+              <p class="testimonial-text">KETE has been a trusted partner across our rooftop and ground-mounted projects. Their team combines technical expertise with strong project management. Truly professional.</p>
+              <div class="testimonial-author-name">Mayank Rohilla</div>
+              <div class="testimonial-author-role">Director, REnergo Developers Pvt Ltd.</div>
+            </div>
+            <div class="testimonial-card testimonial-card--marquee">
+              <div class="testimonial-quote-mark">"</div>
+              <div class="testimonial-divider"></div>
+              <p class="testimonial-text">Our 25 MW ground-mounted project was executed seamlessly. From meticulous design coordination to on-site execution, the team demonstrated strong expertise throughout.</p>
+              <div class="testimonial-author-name">Sandip Shah</div>
+              <div class="testimonial-author-role">CMD, Pashupati Renewables Ltd.</div>
+            </div>
+          </div>
+          <div class="testimonials-marquee-group">
+            <div class="testimonial-card testimonial-card--marquee">
+              <div class="testimonial-quote-mark">"</div>
+              <div class="testimonial-divider"></div>
+              <p class="testimonial-text">KETE made our rooftop solar project in Chennai completely hassle-free. From planning to installation, their team handled everything with precision. The system runs smoothly every day.</p>
+              <div class="testimonial-author-name">Sanjeet Singh</div>
+              <div class="testimonial-author-role">General Manager O&amp;M, Hero Future Energies</div>
+            </div>
+            <div class="testimonial-card testimonial-card--marquee">
+              <div class="testimonial-quote-mark">"</div>
+              <div class="testimonial-divider"></div>
+              <p class="testimonial-text">Our 460KW rooftop project in Mangalore was a big undertaking, and KETE handled it brilliantly. Clear communication and professionalism throughout. The system performs reliably.</p>
+              <div class="testimonial-author-name">Zahir Shah</div>
+              <div class="testimonial-author-role">Director, Switch Solar Solutions</div>
+            </div>
+            <div class="testimonial-card testimonial-card--marquee">
+              <div class="testimonial-quote-mark">"</div>
+              <div class="testimonial-divider"></div>
+              <p class="testimonial-text">KETE took care of our rooftop projects in Bhatinda with great expertise. They optimized the system for our daily energy needs, completed on time, and remain responsive.</p>
+              <div class="testimonial-author-name">Amrendra Kumar</div>
+              <div class="testimonial-author-role">SCM Manager, Gensol</div>
+            </div>
+            <div class="testimonial-card testimonial-card--marquee">
+              <div class="testimonial-quote-mark">"</div>
+              <div class="testimonial-divider"></div>
+              <p class="testimonial-text">KETE has been a trusted partner across our rooftop and ground-mounted projects. Their team combines technical expertise with strong project management. Truly professional.</p>
+              <div class="testimonial-author-name">Mayank Rohilla</div>
+              <div class="testimonial-author-role">Director, REnergo Developers Pvt Ltd.</div>
+            </div>
+            <div class="testimonial-card testimonial-card--marquee">
+              <div class="testimonial-quote-mark">"</div>
+              <div class="testimonial-divider"></div>
+              <p class="testimonial-text">Our 25 MW ground-mounted project was executed seamlessly. From meticulous design coordination to on-site execution, the team demonstrated strong expertise throughout.</p>
+              <div class="testimonial-author-name">Sandip Shah</div>
+              <div class="testimonial-author-role">CMD, Pashupati Renewables Ltd.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section id="blog" aria-labelledby="blog-heading">
+  <div class="section-label reveal">Insights</div>
+  <h2 class="section-headline reveal reveal-delay-1" id="blog-heading">From the field</h2>
+  <p class="section-sub reveal reveal-delay-2" style="margin-bottom:0;">Short articles on solar EPC, electrical discipline, and residential systems — <a href="blog/index.html" style="color:var(--orange); text-decoration:none; font-weight:600;">view all</a>.</p>
+  <div class="blog-slider-shell">
+    <p class="blog-slider-hint">Swipe for more articles</p>
+    <div class="blog-grid" role="list" aria-label="Featured insight articles">
+    <a class="blog-card reveal" role="listitem" href="blog/rooftop-solar-commercial-india.html">
+      <div class="blog-card-meta">Solar EPC</div>
+      <div class="blog-card-title">Commercial &amp; industrial rooftop solar</div>
+      <p class="blog-card-excerpt">Sanctioned load, structure, DISCOM rules, and why lowest ₹/W is not the whole story.</p>
+      <span class="blog-card-more">Read →</span>
+    </a>
+    <a class="blog-card reveal reveal-delay-1" role="listitem" href="blog/electrical-safety-industrial-sites.html">
+      <div class="blog-card-meta">Electrical</div>
+      <div class="blog-card-title">Safety &amp; instrumentation discipline</div>
+      <p class="blog-card-excerpt">Documentation, loop checks, and protection coordination on industrial sites.</p>
+      <span class="blog-card-more">Read →</span>
+    </a>
+    <a class="blog-card reveal reveal-delay-2" role="listitem" href="blog/residential-solar-net-metering-india.html">
+      <div class="blog-card-meta">Residential</div>
+      <div class="blog-card-title">Home solar &amp; net metering</div>
+      <p class="blog-card-excerpt">Sizing for self-consumption and what a solid installer handover includes.</p>
+      <span class="blog-card-more">Read →</span>
+    </a>
+    </div>
+  </div>
+  <p class="blog-section-cta reveal"><a href="blog/index.html">All insights →</a></p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label reveal">Contact</div>
+  <h2 class="section-headline reveal reveal-delay-1">Get In Touch</h2>
+  <p class="section-sub reveal reveal-delay-2" style="margin-bottom:60px;">We will get back to you as soon as possible.</p>
+  <div class="contact-grid">
+    <div class="contact-img-wrap reveal">
+      <img src="images/contact-us1.webp" alt="Contact KETE" class="contact-img" width="1200" height="500" loading="lazy" decoding="async"/>
+    </div>
+    <div class="contact-form-section reveal reveal-delay-1">
+      <div class="form-title">Leave Us A Message</div>
+      <div class="form-desc">Fill out the form and our team will reach out to you shortly.</div>
+      <!--
+        Web3Forms (web3forms.com): use the Access Key below. In the dashboard, set “allowed domain” / site URL to your LIVE address
+        when you host — e.g. https://kernelectech.in (and https://www.… if you use www). localhost is only for testing on your computer
+        with a local server (http://localhost:PORT); add that separately in Web3Forms if they let you list multiple domains, or relax
+        the restriction until the site is live. Opening this file as file:// will not send the form.
+      -->
+      <form id="contact-form" method="post" novalidate data-web3forms-access-key="83f88c01-37e4-4bf5-8d0d-52f9038d7d85">
+        <div class="form-group">
+          <input type="text" class="form-input" name="name" placeholder="Your Name *" required autocomplete="name"/>
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-input" name="email" placeholder="Your Email *" required autocomplete="email"/>
+        </div>
+        <div class="form-group">
+          <input type="tel" class="form-input" name="phone" placeholder="Your Phone Number *" required autocomplete="tel"/>
+        </div>
+        <div class="form-group">
+          <textarea class="form-input" name="message" placeholder="Your Message *" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+        <p id="contact-form-status" class="contact-form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter reveal">
+  <div class="newsletter-text">
+    <div class="newsletter-title">Subscribe to Our Newsletter</div>
+    <div class="newsletter-sub">Get the latest updates on solar energy solutions and industry trends.</div>
+  </div>
+  <form class="newsletter-form" action="#" method="post">
+    <input type="email" class="newsletter-input" name="email" placeholder="Enter your email" autocomplete="email"/>
+    <button type="submit" class="newsletter-btn">Subscribe</button>
+  </form>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="footer-logo-wrap">
+        <img class="footer-logo logo-asset" src="images/Gemini_Generated_Image_iw9hnxiw9hnxiw9h-Photoroom.svg" alt="KETE — Kern Elec Tech Experts" width="1280" height="1277" loading="lazy" decoding="async"/>
+      </span>
+      <div class="footer-tagline">Electrical | Instrumentation | Control</div>
+      <p class="footer-blurb"><strong>Kern Elec Tech Experts LLP</strong> delivers specialized electrical, instrumentation, and renewable energy solutions with over two decades of experience.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Quick Links</div>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#partners">Partners</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="blog/index.html">Insights</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="services/solar-installation.html">Solar installation</a></li>
+        <li><a href="services/electrical-instrumentation.html">Electrical &amp; instrumentation</a></li>
+        <li><a href="services/residential-solar.html">Residential solar</a></li>
+        <li><a href="SOLAR%20PANNEL/index.html">Solar panel showcase</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-contact-item"><a href="mailto:services@kernelectech.in">Services@kernelectech.in</a></div>
+      <div class="footer-contact-item"><a href="tel:+919716000782">+91 9716000782</a></div>
+      <div class="footer-contact-item footer-contact-cta">
+        <a href="#contact" class="btn-primary">Get In Touch →</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal-stack">
+      <div class="footer-legal">© Copyright 2026 <strong class="footer-legal-name">Kern Elec Tech Experts LLP</strong>. All rights reserved.</div>
+      <div class="footer-legal footer-legal--credit">Developed by <strong class="footer-legal-name">Kern Elec Tech Experts LLP</strong></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var cursor = document.getElementById('cursor');
+  var follower = document.getElementById('cursorFollower');
+  var mx = 0, my = 0, fx = 0, fy = 0;
+  var cursorHover = false;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(pointer: fine)').matches;
+
+  if (!reduceMotion && finePointer && cursor && follower) {
+    document.body.classList.add('has-custom-cursor');
+  }
+
+  (function initHeroCursorReveal() {
+    var home = document.getElementById('home');
+    var layer = home && home.querySelector('.hero-cursor-reveal');
+    if (!home || !layer) return;
+    if (reduceMotion || !finePointer) {
+      layer.classList.add('hero-cursor-reveal--off');
+      return;
+    }
+    var scheduled = false;
+    var lastE = null;
+    function applySpot() {
+      scheduled = false;
+      if (!lastE) return;
+      var e = lastE;
+      var r = home.getBoundingClientRect();
+      if (r.width < 1 || r.height < 1) return;
+      var x = ((e.clientX - r.left) / r.width) * 100;
+      var y = ((e.clientY - r.top) / r.height) * 100;
+      x = Math.max(0, Math.min(100, x));
+      y = Math.max(0, Math.min(100, y));
+      home.style.setProperty('--hero-spot-x', x.toFixed(2) + '%');
+      home.style.setProperty('--hero-spot-y', y.toFixed(2) + '%');
+    }
+    home.addEventListener('mousemove', function (e) {
+      lastE = e;
+      if (!scheduled) {
+        scheduled = true;
+        requestAnimationFrame(applySpot);
+      }
+    });
+    home.addEventListener('mouseleave', function () {
+      lastE = null;
+      home.style.setProperty('--hero-spot-x', '50%');
+      home.style.setProperty('--hero-spot-y', '76%');
+    });
+  })();
+
+  (function initHeroStatCounts() {
+    var bar = document.querySelector('.stats-bar');
+    if (!bar) return;
+
+    function setFinalNumbers() {
+      bar.querySelectorAll('.stat-value--count').forEach(function (wrap) {
+        var target = parseFloat(wrap.getAttribute('data-target'), 10);
+        var numEl = wrap.querySelector('.stat-v-num');
+        if (!numEl || isNaN(target)) return;
+        numEl.textContent = String(Math.round(target));
+      });
+    }
+
+    function easeOutCubic(t) {
+      return 1 - Math.pow(1 - t, 3);
+    }
+
+    function runCounts() {
+      if (bar.getAttribute('data-stats-done') === '1') return;
+      bar.setAttribute('data-stats-done', '1');
+      var wraps = bar.querySelectorAll('.stat-value--count');
+      var startWall = performance.now();
+      wraps.forEach(function (wrap, index) {
+        var target = parseFloat(wrap.getAttribute('data-target'), 10);
+        var numEl = wrap.querySelector('.stat-v-num');
+        var duration = parseInt(wrap.getAttribute('data-duration'), 10) || 1350;
+        var stagger = index * 95;
+        if (!numEl || isNaN(target)) return;
+        function frame(now) {
+          var elapsed = now - startWall - stagger;
+          if (elapsed < 0) {
+            requestAnimationFrame(frame);
+            return;
+          }
+          var t = Math.min(1, elapsed / duration);
+          var eased = easeOutCubic(t);
+          numEl.textContent = String(Math.round(eased * target));
+          if (t < 1) requestAnimationFrame(frame);
+          else numEl.textContent = String(Math.round(target));
+        }
+        requestAnimationFrame(frame);
+      });
+    }
+
+    if (reduceMotion) {
+      setFinalNumbers();
+      return;
+    }
+
+    function attachStatsInViewObserver() {
+      if (!('IntersectionObserver' in window)) {
+        runCounts();
+        return;
+      }
+      var io = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting || entry.intersectionRatio < 0.18) return;
+          obs.disconnect();
+          runCounts();
+        });
+      }, {
+        root: null,
+        rootMargin: '0px',
+        threshold: [0, 0.18, 0.35, 0.55],
+      });
+      io.observe(bar);
+      var pending = io.takeRecords();
+      for (var p = 0; p < pending.length; p++) {
+        if (pending[p].isIntersecting && pending[p].intersectionRatio >= 0.18) {
+          io.disconnect();
+          runCounts();
+          return;
+        }
+      }
+    }
+
+    /* Wait for layout so "in view" is measured correctly; then fire only when the bar scrolls into view */
+    requestAnimationFrame(function () {
+      requestAnimationFrame(attachStatsInViewObserver);
+    });
+  })();
+
+  var newsletterSection = document.querySelector('.newsletter');
+  if (newsletterSection) {
+    newsletterSection.addEventListener('mouseenter', function () {
+      document.body.classList.add('newsletter-cursor-hide');
+    });
+    newsletterSection.addEventListener('mouseleave', function () {
+      document.body.classList.remove('newsletter-cursor-hide');
+    });
+  }
+
+  (function setupLocationCardsScrollHint() {
+    var strip = document.getElementById('location-cards-strip');
+    var hint = document.getElementById('location-cards-more');
+    var fade = document.getElementById('location-cards-fade');
+    if (!strip || !hint) return;
+    function update() {
+      var sw = strip.scrollWidth;
+      var cw = strip.clientWidth;
+      var sl = strip.scrollLeft;
+      var canScroll = sw > cw + 6;
+      var atEnd = canScroll && sl >= sw - cw - 12;
+      var show = canScroll && !atEnd;
+      hint.classList.toggle('is-hidden', !show);
+      hint.setAttribute('aria-hidden', show ? 'false' : 'true');
+      if (fade) {
+        fade.classList.toggle('is-visible', show);
+        fade.setAttribute('aria-hidden', show ? 'false' : 'true');
+      }
+    }
+    strip.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    if (typeof ResizeObserver !== 'undefined') {
+      try {
+        new ResizeObserver(update).observe(strip);
+      } catch (e) {}
+    }
+    requestAnimationFrame(function () {
+      requestAnimationFrame(update);
+    });
+  })();
+
+  document.addEventListener('mousemove', function (e) {
+    mx = e.clientX;
+    my = e.clientY;
+  });
+
+  var cursorRafId = 0;
+  function animateCursor() {
+    if (document.body.classList.contains('has-custom-cursor') && cursor && follower) {
+      var scale = cursorHover ? 1.55 : 1;
+      cursor.style.transform = 'translate(' + (mx - 5) + 'px,' + (my - 5) + 'px) scale(' + scale + ')';
+      fx += (mx - fx) * 0.14;
+      fy += (my - fy) * 0.14;
+      follower.style.transform = 'translate(' + (fx - 16) + 'px,' + (fy - 16) + 'px)';
+    }
+    if (document.visibilityState !== 'hidden') {
+      cursorRafId = requestAnimationFrame(animateCursor);
+    } else {
+      cursorRafId = 0;
+    }
+  }
+  cursorRafId = requestAnimationFrame(animateCursor);
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') {
+      if (cursorRafId) cancelAnimationFrame(cursorRafId);
+      cursorRafId = 0;
+    } else if (!cursorRafId) {
+      cursorRafId = requestAnimationFrame(animateCursor);
+    }
+  });
+
+  var hoverTargets = 'a, button, .location-card[data-map-index], .leaflet-interactive, .portfolio-item, .testimonial-card, .service-card, .partner-marquee-item, .nav-toggle';
+  function attachCursorHoverTargets(scope) {
+    var root = scope || document;
+    root.querySelectorAll(hoverTargets).forEach(function (el) {
+      if (el.getAttribute('data-kete-cursor-hover') === '1') return;
+      el.setAttribute('data-kete-cursor-hover', '1');
+      el.addEventListener('mouseenter', function () {
+        cursorHover = true;
+        if (!follower) return;
+        follower.style.width = '48px';
+        follower.style.height = '48px';
+        follower.style.borderColor = 'rgba(245,130,10,0.85)';
+      });
+      el.addEventListener('mouseleave', function () {
+        cursorHover = false;
+        if (!follower) return;
+        follower.style.width = '32px';
+        follower.style.height = '32px';
+        follower.style.borderColor = 'rgba(245,130,10,0.5)';
+      });
+    });
+  }
+  attachCursorHoverTargets(document);
+
+  var root = document.documentElement;
+  var navbar = document.getElementById('navbar');
+
+  function updateSolarScroll() {
+    var maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    var t = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+    root.style.setProperty('--solar-t', t.toFixed(4));
+  }
+
+  var navPanel = document.getElementById('nav-panel');
+  var navToggle = document.getElementById('nav-toggle');
+  function setNavOpen(open) {
+    if (!navPanel || !navToggle) return;
+    navPanel.classList.toggle('is-open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.classList.toggle('nav-open', open);
+  }
+  if (navToggle && navPanel) {
+    navToggle.addEventListener('click', function () {
+      setNavOpen(!navPanel.classList.contains('is-open'));
+    });
+    navPanel.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (window.matchMedia('(max-width: 900px)').matches) setNavOpen(false);
+      });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setNavOpen(false);
+    });
+  }
+
+  var scrollNavScheduled = false;
+  function onScrollNav() {
+    if (scrollNavScheduled) return;
+    scrollNavScheduled = true;
+    requestAnimationFrame(function () {
+      scrollNavScheduled = false;
+      if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 48);
+      updateSolarScroll();
+    });
+  }
+  window.addEventListener('scroll', onScrollNav, { passive: true });
+  window.addEventListener('resize', function () {
+    updateSolarScroll();
+    if (window.matchMedia('(min-width: 901px)').matches) setNavOpen(false);
+  });
+  onScrollNav();
+
+  var contactForm = document.getElementById('contact-form');
+  var contactFormStatus = document.getElementById('contact-form-status');
+  if (contactForm && contactFormStatus) {
+    function setContactStatus(type, text) {
+      contactFormStatus.textContent = text;
+      contactFormStatus.className = 'contact-form-status is-visible contact-form-status--' + type;
+    }
+    function clearContactStatus() {
+      contactFormStatus.textContent = '';
+      contactFormStatus.className = 'contact-form-status';
+    }
+    contactForm.addEventListener('input', function () {
+      var btn = contactForm.querySelector('.form-submit');
+      if (!btn || btn.textContent !== 'Sent') return;
+      btn.textContent = 'Send Message';
+      btn.disabled = false;
+      btn.classList.remove('form-submit--sent');
+    });
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      clearContactStatus();
+      if (typeof contactForm.reportValidity === 'function' && !contactForm.reportValidity()) {
+        return;
+      }
+      var accessKey = (contactForm.getAttribute('data-web3forms-access-key') || '').trim();
+      if (!accessKey || accessKey === 'PLACEHOLDER_WEB3FORMS_KEY') {
+        setContactStatus('error', 'Add your Web3Forms access key on this form (see the comment above). Test with a local server (not file://). In web3forms.com, allow your real domain when the site is hosted — not only localhost.');
+        return;
+      }
+      var submitBtn = contactForm.querySelector('.form-submit');
+      var fd = new FormData(contactForm);
+      var payload = {
+        access_key: accessKey,
+        subject: 'New message from KETE website (kernelectech.in)',
+        from_name: 'KETE contact form',
+        name: fd.get('name'),
+        email: fd.get('email'),
+        phone: fd.get('phone'),
+        message: fd.get('message')
+      };
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.classList.remove('form-submit--sent');
+        submitBtn.textContent = 'Sending…';
+      }
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          return res.json().then(function (data) {
+            return { ok: res.ok, data: data };
+          });
+        })
+        .then(function (out) {
+          var data = out.data;
+          if (out.ok && data && data.success === true) {
+            contactForm.reset();
+            setContactStatus('success', 'Message sent successfully. We will get back to you soon.');
+            if (submitBtn) {
+              submitBtn.textContent = 'Sent';
+              submitBtn.disabled = true;
+              submitBtn.classList.add('form-submit--sent');
+            }
+          } else {
+            var errMsg = (data && data.message) ? String(data.message) : 'Something went wrong. Please try again or email services@kernelectech.in directly.';
+            setContactStatus('error', errMsg);
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Send Message';
+            }
+          }
+        })
+        .catch(function () {
+          setContactStatus('error', 'Network error. Check your connection, or email services@kernelectech.in directly.');
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Message';
+          }
+        });
+    });
+  }
+  var newsletterForm = document.querySelector('.newsletter-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+    });
+  }
+
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
+    document.querySelectorAll('.reveal, .reveal-fade-only').forEach(function (el) {
+      observer.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.reveal, .reveal-fade-only').forEach(function (el) {
+      el.classList.add('visible');
+    });
+  }
+
+  /* Coverage map: Leaflet + Carto — loaded only when the map block nears the viewport */
+  var mapEl = document.getElementById('kete-coverage-map');
+  var mapShell = document.getElementById('map-leaflet-shell');
+  var mapFallback = document.getElementById('map-static-fallback');
+  var mapSection = document.getElementById('map-section');
+  function showMapFallback() {
+    if (!mapShell || !mapFallback) return;
+    mapShell.classList.add('fallback-active');
+    mapFallback.classList.add('is-visible');
+    mapFallback.setAttribute('aria-hidden', 'false');
+  }
+
+  var coverageMapReady = false;
+  var leafletInjectState = 0;
+
+  function initCoverageMap() {
+    if (coverageMapReady) return;
+    if (!mapEl || !mapShell || typeof L === 'undefined') {
+      showMapFallback();
+      return;
+    }
+    try {
+      var sites = [
+        { lat: 30.21, lng: 74.94, label: 'Punjab (Bathinda)', detail: 'Gensol Ltd. — HMEL refinery solar rooftop' },
+        { lat: 22.573, lng: 88.364, label: 'West Bengal (Kolkata)', detail: 'Sunville — heritage, commercial & fuel-station solar' },
+        { lat: 12.915, lng: 74.856, label: 'Karnataka (Mangalore)', detail: 'Mukka Proteins — solar rooftop plant' },
+        { lat: 13.55, lng: 80.02, label: 'Andhra Pradesh (Sri City)', detail: 'Hero Future Energies — 19.5 kWp rooftop, Omni Auto' },
+        { lat: 27.72, lng: 85.32, label: 'Nepal', detail: 'KETE — regional service & support' },
+        { lat: 26.23, lng: 81.24, label: 'Uttar Pradesh (Rae Bareli)', detail: 'ITI Limited — 330 kWp rooftop solar · Doorbhash Nagar, Rae Bareli-229010, UP' }
+      ];
+      var coverageMap = L.map(mapEl, {
+        scrollWheelZoom: false,
+        zoomControl: true,
+        worldCopyJump: true
+      });
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+      }).addTo(coverageMap);
+      var bounds = L.latLngBounds(L.latLng(6.2, 68.0), L.latLng(37.2, 97.5));
+      coverageMap.setMaxBounds(bounds.pad(0.06));
+      coverageMap.fitBounds(bounds, { padding: [18, 18], maxZoom: 5 });
+      var markerIcon = L.divIcon({
+        className: 'kete-map-divicon',
+        html: '<div class="kete-map-marker"><span class="kete-map-marker-pulse"></span><span class="kete-map-marker-dot"></span></div>',
+        iconSize: [28, 28],
+        iconAnchor: [14, 14],
+        popupAnchor: [0, -12]
+      });
+      var markers = [];
+      sites.forEach(function (site) {
+        var m = L.marker([site.lat, site.lng], { icon: markerIcon });
+        m.bindPopup('<strong>' + site.label + '</strong><br/><span style="color:#A8A29E;font-size:12px;">' + site.detail + '</span>');
+        m.addTo(coverageMap);
+        markers.push(m);
+      });
+      function focusSite(i) {
+        if (i < 0 || i >= markers.length) return;
+        var s = sites[i];
+        var z = Math.max(coverageMap.getZoom(), 7);
+        if (reduceMotion) {
+          coverageMap.setView([s.lat, s.lng], z);
+        } else {
+          coverageMap.flyTo([s.lat, s.lng], z, { duration: 0.85 });
+        }
+        markers[i].openPopup();
+      }
+      document.querySelectorAll('.location-card[data-map-index]').forEach(function (card) {
+        function go() {
+          var i = parseInt(card.getAttribute('data-map-index'), 10);
+          if (!isNaN(i)) focusSite(i);
+        }
+        card.addEventListener('click', go);
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            go();
+          }
+        });
+      });
+      function invalidateCoverageMap() {
+        coverageMap.invalidateSize();
+      }
+      window.addEventListener('resize', invalidateCoverageMap);
+      if (mapSection && 'IntersectionObserver' in window) {
+        var mapIo = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              requestAnimationFrame(function () {
+                requestAnimationFrame(invalidateCoverageMap);
+              });
+            }
+          });
+        }, { threshold: 0.06 });
+        mapIo.observe(mapSection);
+      }
+      if (mapSection && 'MutationObserver' in window) {
+        var mo = new MutationObserver(function () {
+          if (mapSection.classList.contains('visible')) {
+            setTimeout(invalidateCoverageMap, 450);
+          }
+        });
+        mo.observe(mapSection, { attributes: true, attributeFilter: ['class'] });
+      }
+      setTimeout(invalidateCoverageMap, 120);
+      coverageMapReady = true;
+      attachCursorHoverTargets(mapEl);
+    } catch (err) {
+      showMapFallback();
+    }
+  }
+
+  function injectLeafletThenInit() {
+    if (leafletInjectState >= 1) return;
+    leafletInjectState = 1;
+
+    function fail() {
+      leafletInjectState = 2;
+      showMapFallback();
+    }
+
+    if (typeof L !== 'undefined') {
+      leafletInjectState = 2;
+      initCoverageMap();
+      return;
+    }
+
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+    css.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';
+    css.crossOrigin = 'anonymous';
+    css.onload = function () {
+      var s = document.createElement('script');
+      s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+      s.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
+      s.crossOrigin = 'anonymous';
+      s.onload = function () {
+        leafletInjectState = 2;
+        initCoverageMap();
+      };
+      s.onerror = fail;
+      document.body.appendChild(s);
+    };
+    css.onerror = fail;
+    document.head.appendChild(css);
+  }
+
+  if (mapEl && mapShell) {
+    if ('IntersectionObserver' in window) {
+      var mapAssetIo = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            obs.disconnect();
+            injectLeafletThenInit();
+          }
+        });
+      }, { rootMargin: '220px 0px', threshold: 0 });
+      mapAssetIo.observe(mapSection || mapEl);
+    } else {
+      injectLeafletThenInit();
+    }
+  }
+})();
+</script>
+</body>
+</html>
