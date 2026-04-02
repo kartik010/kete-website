@@ -1728,20 +1728,27 @@
   .footer-bottom {
     border-top: 1px solid var(--border-subtle);
     padding-top: 28px;
-    display: flex; justify-content: flex-start; align-items: center;
-  }
-  .footer-legal-stack {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px 24px;
+    width: 100%;
+    box-sizing: border-box;
   }
   .footer-legal {
-    font-size: 12px; color: var(--text-muted);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 0;
+    max-width: min(100%, 42rem);
   }
   .footer-legal--credit {
     font-size: 11px;
     letter-spacing: 0.03em;
+    margin: 0;
+    text-align: right;
+    max-width: min(100%, 28rem);
   }
   .footer-legal .footer-legal-name {
     color: var(--orange);
@@ -2378,20 +2385,21 @@
     }
     .footer-bottom {
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: 12px;
       text-align: center;
       padding-top: 24px;
     }
-    .footer-legal-stack {
-      align-items: center;
+    .footer-legal,
+    .footer-legal--credit {
       text-align: center;
+      min-width: 0;
+      max-width: none;
     }
     .footer-legal {
       font-size: 11px;
       line-height: 1.5;
-      max-width: 22rem;
     }
   }
 </style>
@@ -2878,9 +2886,9 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <span class="footer-logo-wrap">
+      <div class="footer-logo-wrap">
         <img class="footer-logo logo-asset" src="images/Gemini_Generated_Image_iw9hnxiw9hnxiw9h-Photoroom.svg" alt="KETE — Kern Elec Tech Experts" width="1280" height="1277" loading="lazy" decoding="async"/>
-      </span>
+      </div>
       <div class="footer-tagline">Electrical | Instrumentation | Control</div>
       <p class="footer-blurb"><strong>Kern Elec Tech Experts LLP</strong> delivers specialized electrical, instrumentation, and renewable energy solutions with over two decades of experience.</p>
     </div>
@@ -2913,10 +2921,8 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-legal-stack">
-      <div class="footer-legal">© Copyright 2026 <strong class="footer-legal-name">Kern Elec Tech Experts LLP</strong>. All rights reserved.</div>
-      <div class="footer-legal footer-legal--credit">Developed by <strong class="footer-legal-name">Kern Elec Tech Experts LLP</strong></div>
-    </div>
+    <p class="footer-legal">© Copyright 2026 <strong class="footer-legal-name">Kern Elec Tech Experts LLP</strong>. All rights reserved.</p>
+    <p class="footer-legal footer-legal--credit">Developed by <strong class="footer-legal-name">Kern Elec Tech Experts LLP</strong></p>
   </div>
 </footer>
 
