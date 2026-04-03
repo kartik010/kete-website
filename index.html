@@ -2027,6 +2027,8 @@
 
   /* MOBILE */
   @media (max-width: 900px) {
+    /* Smooth scroll + dynamic toolbar (iOS) fights layout; native scroll feels steadier */
+    html { scroll-behavior: auto; }
     :root {
       /* Clear fixed nav + notch; logo uses modest scale so it doesn’t paint past the edge */
       --nav-safe-top: 5.5rem;
@@ -2125,8 +2127,10 @@
     .portfolio-grid { grid-template-columns: 1fr; }
     .portfolio-item.featured { grid-column: span 1; aspect-ratio: 4/3; }
 
-    /* CardsParallax-style: full-viewport sticky stack (services + portfolio) */
-    #services,
+    /* Mobile: sticky card deck. Services ends tighter so Portfolio isn’t preceded by a tall empty band. */
+    #services {
+      padding-bottom: clamp(20px, 5vw, 36px);
+    }
     #portfolio {
       padding-bottom: clamp(48px, 11vw, 72px);
     }
@@ -2144,11 +2148,9 @@
     #portfolio .scroll-card-slide {
       display: flex;
       justify-content: center;
-      /* Same vertical band for every slide (reads like one deck, not “first up / rest centered”). */
       align-items: flex-start;
       padding-top: clamp(8px, 2vh, 16px);
       padding-bottom: clamp(16px, 5vh, 36px);
-      /* Opaque paint + slight gradient so full-slide layers aren’t flat slabs. */
       background: linear-gradient(180deg, #0b0b0b 0%, var(--black) 45%, #080808 100%);
       position: -webkit-sticky;
       position: sticky;
@@ -2161,7 +2163,6 @@
     #portfolio .scroll-card-slide {
       background: linear-gradient(180deg, #141414 0%, var(--dark) 45%, #0e0e0e 100%);
     }
-    /* Shorter runway than 100vh so each card “handoff” feels quicker; first beat still clears the header. */
     #services .scroll-card-slide:first-child,
     #portfolio .scroll-card-slide:first-child {
       min-height: min(84svh, 40rem);
@@ -2172,13 +2173,20 @@
       min-height: min(88svh, 38rem);
       min-height: min(88dvh, 38rem);
     }
-    /* Last slide: only as tall as the card + padding — avoids a long empty scroll after the stack ends. */
-    #services .scroll-card-slide:last-child,
+    /*
+      Last service slide needs a real viewport-sized runway so card 03 stacks over 02 like the others.
+      Slightly under the middle slides (88svh) trims dead space vs the old 82svh slab before Portfolio.
+    */
+    #services .scroll-card-slide:last-child {
+      min-height: min(74svh, 32rem);
+      min-height: min(74dvh, 32rem);
+      padding-bottom: clamp(14px, 3.5vh, 28px);
+    }
     #portfolio .scroll-card-slide:last-child {
-      min-height: auto;
+      min-height: min(78svh, 32rem);
+      min-height: min(78dvh, 32rem);
       padding-bottom: clamp(20px, 5vh, 40px);
     }
-    /* Scroll stack + staggered reveal fight each other — keep cards present for scroll-linked motion. */
     #services .services-grid.reveal-children > .scroll-card-slide,
     #services .services-grid.reveal-children.visible > .scroll-card-slide {
       opacity: 1 !important;
@@ -2200,6 +2208,10 @@
     #portfolio .scroll-card-slide:nth-child(4) { z-index: 4; }
     #portfolio .scroll-card-slide:nth-child(5) { z-index: 5; }
     #portfolio .scroll-card-slide:nth-child(6) { z-index: 6; }
+    #portfolio .scroll-card-slide:nth-child(7) { z-index: 7; }
+    #portfolio .scroll-card-slide:nth-child(8) { z-index: 8; }
+    #portfolio .scroll-card-slide:nth-child(9) { z-index: 9; }
+    #portfolio .scroll-card-slide:nth-child(10) { z-index: 10; }
     #services .scroll-card-slide .service-card {
       position: relative;
       width: min(100%, 36rem);
@@ -2214,6 +2226,7 @@
       box-shadow: 0 1.25rem 3.75rem rgba(0, 0, 0, 0.55);
       border-radius: 4px;
       background: var(--dark);
+      pointer-events: auto;
     }
     #services .scroll-card-slide .service-img {
       position: absolute;
@@ -2263,8 +2276,8 @@
     #portfolio .scroll-card-slide .portfolio-item {
       position: relative;
       width: min(100%, 36rem);
-      height: min(70vh, 26rem);
-      min-height: 17.5rem;
+      height: min(76vh, 30rem);
+      min-height: 18.5rem;
       aspect-ratio: unset;
       overflow: hidden;
       box-shadow: 0 1.25rem 3.75rem rgba(0, 0, 0, 0.55);
@@ -2274,10 +2287,16 @@
       font-size: clamp(1.15rem, 4.5vw, 1.5rem);
       line-height: 1.25;
     }
+    #portfolio .scroll-card-slide .portfolio-location {
+      font-size: clamp(10px, 2.9vw, 12px);
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
     #portfolio .scroll-card-slide .portfolio-img {
       filter: brightness(0.5) saturate(0.75);
     }
     #portfolio .scroll-card-slide .portfolio-overlay {
+      padding: 20px 18px 22px;
       background: linear-gradient(to top, rgba(10, 10, 10, 0.92) 0%, transparent 62%);
     }
     #portfolio .scroll-card-slide .portfolio-item:hover .portfolio-img {
@@ -2294,13 +2313,15 @@
       box-sizing: border-box;
     }
     .testimonials-stat-anchor {
-      padding: 18px 24px 20px;
+      padding: 14px 20px 16px;
     }
     .testimonials-stat-anchor::after {
       display: none;
     }
     .testimonial-card--stat {
       max-width: 100%;
+      min-height: 0;
+      padding: 28px 22px;
     }
     .testimonials-marquee-bleed {
       margin-left: 0;
@@ -2309,44 +2330,80 @@
       box-sizing: border-box;
     }
     .testimonials-marquee-mask {
-      padding: 14px 0 18px;
-      mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
+      padding: 18px 0 22px;
+      mask-image: linear-gradient(90deg, transparent 0%, #000 1.5%, #000 98.5%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 1.5%, #000 98.5%, transparent 100%);
     }
     .testimonials-marquee {
-      animation-duration: 72s;
+      animation-duration: 48s;
       animation-play-state: running;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
     }
+    .testimonials-marquee-group {
+      padding-right: clamp(24px, 6vw, 48px);
+    }
     .testimonial-card--marquee {
-      width: min(340px, 88vw);
-      min-height: 240px;
+      width: min(420px, 92vw);
+      min-height: clamp(264px, 52vw, 320px);
+      padding: 26px 22px 24px;
+      box-sizing: border-box;
     }
+    .testimonial-card--marquee .testimonial-quote-mark {
+      font-size: clamp(44px, 11vw, 52px);
+      margin-bottom: 12px;
+    }
+    .testimonial-card--marquee .testimonial-text {
+      font-size: clamp(14px, 3.7vw, 16px);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .testimonial-card--marquee .testimonial-author-name {
+      font-size: clamp(14px, 3.6vw, 15px);
+    }
+    .testimonial-card--marquee .testimonial-author-role {
+      font-size: clamp(12px, 3.2vw, 13px);
+      line-height: 1.45;
+    }
+    /* Shorter landing scroll on phone: hide Insights strip here; nav + footer still open blog/index.html */
     #blog {
-      padding-top: 52px;
-      padding-bottom: 52px;
-    }
-    .blog-slider-hint {
-      display: block;
-    }
-    a.blog-card {
-      flex-basis: min(320px, 86vw);
-      padding: 22px 20px;
+      display: none !important;
     }
     .contact-grid { grid-template-columns: 1fr; }
     .contact-img { height: 260px; }
     .newsletter { flex-direction: column; padding: 40px 24px; }
     .newsletter-form { flex: 1; width: 100%; }
-    /* Footer: was .footer (no such class) — use footer; single column reads cleanly on narrow screens */
+    /* Footer: brand full width; Quick Links + Services in two columns; links flow in rows; contact in one band */
     footer {
       padding: 48px max(20px, env(safe-area-inset-left, 0px)) 32px max(20px, env(safe-area-inset-right, 0px));
       padding-bottom: max(32px, calc(16px + env(safe-area-inset-bottom, 0px)));
     }
     .footer-grid {
-      grid-template-columns: 1fr;
-      gap: 32px;
-      margin-bottom: 40px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px 18px;
+      margin-bottom: 32px;
+      align-items: start;
+    }
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+    .footer-grid > div:nth-child(4) {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 18px;
+      padding-top: 4px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .footer-grid > div:nth-child(4) .footer-col-title {
+      flex: 1 0 100%;
+      margin-bottom: 2px;
+      padding-top: 8px;
+      border-top: none;
+      border-bottom: none;
+      padding-bottom: 4px;
     }
     .footer-logo.logo-asset {
       max-height: 56px;
@@ -2361,45 +2418,63 @@
       font-size: 13px;
     }
     .footer-col-title {
-      margin-bottom: 14px;
-      padding-bottom: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+    }
+    .footer-links {
+      flex-direction: row;
+      flex-wrap: wrap;
+      column-gap: 14px;
+      row-gap: 8px;
+      align-items: center;
+    }
+    .footer-links li {
+      display: inline-flex;
     }
     .footer-links a {
-      font-size: 14px;
-      line-height: 1.45;
+      font-size: 13px;
+      line-height: 1.35;
     }
     .footer-contact-item {
       word-break: break-word;
       overflow-wrap: anywhere;
+      margin-bottom: 0;
+    }
+    .footer-contact-cta {
+      margin-top: 0;
     }
     .footer-contact-item a:not(.btn-primary) {
       display: inline-block;
       max-width: 100%;
     }
     footer .footer-contact-item a.btn-primary {
-      display: block;
-      width: 100%;
-      max-width: 280px;
+      display: inline-block;
+      width: auto;
+      max-width: none;
       text-align: center;
       box-sizing: border-box;
     }
     .footer-bottom {
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: flex-start;
-      gap: 12px;
-      text-align: center;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 14px;
       padding-top: 24px;
     }
-    .footer-legal,
-    .footer-legal--credit {
-      text-align: center;
+    .footer-legal {
+      text-align: left;
+      flex: 1 1 auto;
       min-width: 0;
       max-width: none;
-    }
-    .footer-legal {
       font-size: 11px;
-      line-height: 1.5;
+      line-height: 1.45;
+    }
+    .footer-legal--credit {
+      text-align: right;
+      flex: 0 1 auto;
+      min-width: 0;
+      max-width: none;
     }
   }
 </style>
@@ -2922,7 +2997,7 @@
   </div>
   <div class="footer-bottom">
     <p class="footer-legal">© Copyright 2026 <strong class="footer-legal-name">Kern Elec Tech Experts LLP</strong>. All rights reserved.</p>
-    <p class="footer-legal footer-legal--credit">Developed by <strong class="footer-legal-name">Kern Elec Tech Experts LLP</strong></p>
+    <p class="footer-legal footer-legal--credit">Developed by <strong class="footer-legal-name">KETE</strong></p>
   </div>
 </footer>
 
