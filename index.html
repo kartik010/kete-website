@@ -324,10 +324,9 @@
     left: 12px;
   }
 
-  /* HERO — top padding reserves fixed nav + logo bleed; svh/dvh avoid mobile/laptop UI overlap */
+  /* HERO — 100svh only: 100dvh reflows when mobile browser chrome animates and causes scroll jitter */
   #home {
     min-height: 100svh;
-    min-height: 100dvh;
     padding: var(--nav-safe-top) 0 0;
     position: relative;
     display: flex;
@@ -2038,7 +2037,13 @@
       overflow-x: visible;
       max-width: 100%;
     }
-    nav { padding: 14px max(16px, env(safe-area-inset-left)) 14px max(16px, env(safe-area-inset-right)); flex-wrap: nowrap; min-height: 0; }
+    /* No padding transition: avoids height animation fighting sticky slides while scroll position jitters */
+    nav {
+      padding: 14px max(16px, env(safe-area-inset-left)) 14px max(16px, env(safe-area-inset-right));
+      flex-wrap: nowrap;
+      min-height: 0;
+      transition: background 0.35s ease, border-color 0.35s ease;
+    }
     nav.scrolled { padding: 10px max(16px, env(safe-area-inset-left)) 10px max(16px, env(safe-area-inset-right)); }
     .nav-logo {
       margin-right: clamp(28px, 8vw, 64px);
@@ -2055,8 +2060,8 @@
       position: fixed;
       top: 0;
       right: 0;
-      height: 100vh;
-      height: 100dvh;
+      bottom: 0;
+      height: auto;
       width: min(300px, 86vw);
       margin: 0;
       flex-direction: column;
@@ -2166,12 +2171,10 @@
     #services .scroll-card-slide:first-child,
     #portfolio .scroll-card-slide:first-child {
       min-height: min(84svh, 40rem);
-      min-height: min(84dvh, 40rem);
     }
     #services .scroll-card-slide:not(:first-child),
     #portfolio .scroll-card-slide:not(:first-child) {
       min-height: min(88svh, 38rem);
-      min-height: min(88dvh, 38rem);
     }
     /*
       Last service slide needs a real viewport-sized runway so card 03 stacks over 02 like the others.
@@ -2179,12 +2182,10 @@
     */
     #services .scroll-card-slide:last-child {
       min-height: min(74svh, 32rem);
-      min-height: min(74dvh, 32rem);
       padding-bottom: clamp(14px, 3.5vh, 28px);
     }
     #portfolio .scroll-card-slide:last-child {
       min-height: min(78svh, 32rem);
-      min-height: min(78dvh, 32rem);
       padding-bottom: clamp(20px, 5vh, 40px);
     }
     #services .services-grid.reveal-children > .scroll-card-slide,
@@ -3261,12 +3262,22 @@
   }
 
   var scrollNavScheduled = false;
+  /* Hysteresis: stops scrolled class flipping when scrollY hovers near one threshold (mobile URL bar / bounce) */
+  var navScrolledLatch = false;
   function onScrollNav() {
     if (scrollNavScheduled) return;
     scrollNavScheduled = true;
     requestAnimationFrame(function () {
       scrollNavScheduled = false;
-      if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 48);
+      if (navbar) {
+        var y = window.scrollY || 0;
+        if (navScrolledLatch) {
+          if (y < 12) navScrolledLatch = false;
+        } else {
+          if (y > 72) navScrolledLatch = true;
+        }
+        navbar.classList.toggle('scrolled', navScrolledLatch);
+      }
       updateSolarScroll();
     });
   }
@@ -3274,6 +3285,10 @@
   window.addEventListener('resize', function () {
     updateSolarScroll();
     if (window.matchMedia('(min-width: 901px)').matches) setNavOpen(false);
+    var y = window.scrollY || 0;
+    if (y < 12) navScrolledLatch = false;
+    else if (y > 72) navScrolledLatch = true;
+    if (navbar) navbar.classList.toggle('scrolled', navScrolledLatch);
   });
   onScrollNav();
 
