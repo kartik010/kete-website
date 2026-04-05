@@ -1069,8 +1069,15 @@
     align-items: flex-end; margin-bottom: 60px;
   }
   .services-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 1px; background: var(--border-subtle);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--border-subtle);
+  }
+  @media (min-width: 901px) and (max-width: 1199px) {
+    .services-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
   a.service-card {
     background: var(--dark);
@@ -1955,10 +1962,17 @@
       gap: 2px !important;
       background: var(--dark) !important;
     }
-    @media (min-width: 901px) {
+    @media (min-width: 901px) and (max-width: 1199px) {
       #services .services-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
       }
+    }
+    @media (min-width: 1200px) {
+      #services .services-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      }
+    }
+    @media (min-width: 901px) {
       #portfolio .portfolio-grid {
         grid-template-columns: repeat(3, 1fr) !important;
       }
@@ -2206,6 +2220,7 @@
     #portfolio .scroll-card-slide:nth-child(2) { z-index: 2; }
     #services .scroll-card-slide:nth-child(3),
     #portfolio .scroll-card-slide:nth-child(3) { z-index: 3; }
+    #services .scroll-card-slide:nth-child(4),
     #portfolio .scroll-card-slide:nth-child(4) { z-index: 4; }
     #portfolio .scroll-card-slide:nth-child(5) { z-index: 5; }
     #portfolio .scroll-card-slide:nth-child(6) { z-index: 6; }
@@ -2611,7 +2626,7 @@
     </div>
     <div class="map-container reveal" id="map-section">
       <div class="map-leaflet-shell" id="map-leaflet-shell">
-        <div id="kete-coverage-map" class="map-leaflet" role="region" aria-label="Map: KETE project sites across India and Nepal"></div>
+        <div id="kete-coverage-map" class="map-leaflet" role="region" aria-label="Map: KETE project sites across India and Nepal — HMEL Bathinda, Kolkata Sunville sites, Mukka Mangalore, Sri City, Terai and eastern Nepal solar plants, Rae Bareli"></div>
         <figure class="map-static-fallback" id="map-static-fallback" aria-hidden="true">
           <img src="images/india-nepal-geo.svg" alt="Map of India and Nepal with project regions" width="320" height="360" loading="lazy" decoding="async"/>
         </figure>
@@ -2622,27 +2637,27 @@
         <div class="location-cards" id="location-cards-strip" aria-label="Project photo strip — select to focus map" aria-describedby="location-cards-more-help">
         <figure class="location-card" data-map-index="0" tabindex="0" role="button" aria-label="Show Punjab on map">
           <div class="location-card-photo"><img src="images/project_hml.webp" alt="" width="120" height="120" loading="lazy" decoding="async"/></div>
-          <figcaption class="location-card-cap">Punjab<span class="location-card-sub">Gensol · HMEL</span></figcaption>
+          <figcaption class="location-card-cap">Punjab<span class="location-card-sub">Gensol · HMEL (3 plants)</span></figcaption>
         </figure>
         <figure class="location-card" data-map-index="1" tabindex="0" role="button" aria-label="Show West Bengal on map">
           <div class="location-card-photo"><img src="images/sunville_heritage.webp" alt="" width="120" height="120" loading="lazy" decoding="async"/></div>
-          <figcaption class="location-card-cap">West Bengal<span class="location-card-sub">Sunville · Kolkata</span></figcaption>
+          <figcaption class="location-card-cap">West Bengal<span class="location-card-sub">Sunville · Kolkata (3 sites)</span></figcaption>
         </figure>
         <figure class="location-card" data-map-index="2" tabindex="0" role="button" aria-label="Show Karnataka on map">
           <div class="location-card-photo"><img src="images/project_mukka.webp" alt="" width="120" height="120" loading="lazy" decoding="async"/></div>
-          <figcaption class="location-card-cap">Karnataka<span class="location-card-sub">Mukka Proteins</span></figcaption>
+          <figcaption class="location-card-cap">Karnataka<span class="location-card-sub">Mukka Proteins · 460 kWp</span></figcaption>
         </figure>
         <figure class="location-card" data-map-index="3" tabindex="0" role="button" aria-label="Show Andhra Pradesh on map">
           <div class="location-card-photo"><img src="images/project_omni.webp" alt="" width="120" height="120" loading="lazy" decoding="async"/></div>
-          <figcaption class="location-card-cap">Andhra Pradesh<span class="location-card-sub">Hero Future · Sri City</span></figcaption>
+          <figcaption class="location-card-cap">Andhra Pradesh<span class="location-card-sub">Hero Future · 19.5 kWp</span></figcaption>
         </figure>
-        <figure class="location-card" data-map-index="4" tabindex="0" role="button" aria-label="Show Nepal on map">
-          <div class="location-card-photo"><img src="images/mission.webp" alt="" width="120" height="120" loading="lazy" decoding="async"/></div>
-          <figcaption class="location-card-cap">Nepal<span class="location-card-sub">KETE operations</span></figcaption>
+        <figure class="location-card" tabindex="0" role="button" data-map-nepal="true" aria-label="Show all Nepal project sites on map — Biratnagar, Jhapa, Janakpur, Chanauta">
+          <div class="location-card-photo"><img src="images/WhatsApp%20Image%202026-04-03%20at%2015.28.27.webp" alt="" width="120" height="120" loading="lazy" decoding="async"/></div>
+          <figcaption class="location-card-cap">Nepal<span class="location-card-sub">Biratnagar · Jhapa · Janakpur · Chanauta</span></figcaption>
         </figure>
-        <figure class="location-card" data-map-index="5" tabindex="0" role="button" aria-label="Show Uttar Pradesh Rae Bareli on map">
+        <figure class="location-card" data-map-index="8" tabindex="0" role="button" aria-label="Show Uttar Pradesh Rae Bareli on map">
           <div class="location-card-photo"><img src="images/WhatsApp%20Image%202026-04-01%20at%2021.46.33.webp" alt="" width="120" height="120" loading="lazy" decoding="async"/></div>
-          <figcaption class="location-card-cap">Uttar Pradesh<span class="location-card-sub">ITI Limited · Rae Bareli · 330 kW</span></figcaption>
+          <figcaption class="location-card-cap">Uttar Pradesh<span class="location-card-sub">ITI Limited, Rae Bareli</span></figcaption>
         </figure>
         </div>
         <p class="location-cards-more is-hidden" id="location-cards-more">
@@ -2662,7 +2677,7 @@
     <div>
       <div class="section-label reveal">What we do</div>
       <h2 class="section-headline reveal reveal-delay-1">Our Expert<br/>Services</h2>
-      <p class="section-sub reveal reveal-delay-2">Commercial, industrial, and residential — full lifecycle support.</p>
+      <p class="section-sub reveal reveal-delay-2">Commercial, industrial, and residential — plus O&amp;M that keeps plants performing.</p>
     </div>
   </div>
   <div class="services-grid reveal reveal-children">
@@ -2690,6 +2705,15 @@
         <div class="service-num">03</div>
         <h3 class="service-title">Residential Solar</h3>
         <p class="service-desc">Refined solar solutions for modern homes as a lifestyle investment — sustainable living with zero compromise.</p>
+        <span class="service-arrow" aria-hidden="true">Learn More →</span>
+      </a>
+    </div>
+    <div class="scroll-card-slide">
+      <a class="service-card" href="services/om-operation-maintenance.html">
+        <img src="images/WhatsApp%20Image%202026-04-03%20at%2014.21.21.webp" alt="Solar panel cleaning and O&amp;M — technician washing modules" class="service-img" width="800" height="200" loading="lazy" decoding="async"/>
+        <div class="service-num">04</div>
+        <h3 class="service-title">O&amp;M — Operation &amp; Maintenance</h3>
+        <p class="service-desc">Scheduled module cleaning, inspections, and performance checks so dust and soiling do not quietly erode your yield — site-safe methods and clear reporting.</p>
         <span class="service-arrow" aria-hidden="true">Learn More →</span>
       </a>
     </div>
@@ -2985,6 +3009,7 @@
         <li><a href="services/solar-installation.html">Solar installation</a></li>
         <li><a href="services/electrical-instrumentation.html">Electrical &amp; instrumentation</a></li>
         <li><a href="services/residential-solar.html">Residential solar</a></li>
+        <li><a href="services/om-operation-maintenance.html">O&amp;M — operation &amp; maintenance</a></li>
       </ul>
     </div>
     <div>
@@ -3205,7 +3230,7 @@
     }
   });
 
-  var hoverTargets = 'a, button, .location-card[data-map-index], .leaflet-interactive, .portfolio-item, .testimonial-card, .service-card, .partner-marquee-item, .nav-toggle';
+  var hoverTargets = 'a, button, #location-cards-strip .location-card, .leaflet-interactive, .portfolio-item, .testimonial-card, .service-card, .partner-marquee-item, .nav-toggle';
   function attachCursorHoverTargets(scope) {
     var root = scope || document;
     root.querySelectorAll(hoverTargets).forEach(function (el) {
@@ -3423,12 +3448,40 @@
     }
     try {
       var sites = [
-        { lat: 30.21, lng: 74.94, label: 'Punjab (Bathinda)', detail: 'Gensol Ltd. — HMEL refinery solar rooftop' },
-        { lat: 22.573, lng: 88.364, label: 'West Bengal (Kolkata)', detail: 'Sunville — heritage, commercial & fuel-station solar' },
-        { lat: 12.915, lng: 74.856, label: 'Karnataka (Mangalore)', detail: 'Mukka Proteins — solar rooftop plant' },
-        { lat: 13.55, lng: 80.02, label: 'Andhra Pradesh (Sri City)', detail: 'Hero Future Energies — 19.5 kWp rooftop, Omni Auto' },
-        { lat: 27.72, lng: 85.32, label: 'Nepal', detail: 'KETE — regional service & support' },
-        { lat: 26.23, lng: 81.24, label: 'Uttar Pradesh (Rae Bareli)', detail: 'ITI Limited — 330 kWp rooftop solar · Doorbhash Nagar, Rae Bareli-229010, UP' }
+        {
+          lat: 30.21,
+          lng: 74.94,
+          label: 'Punjab (Bathinda · HMEL)',
+          detail: 'Gensol Ltd. @ Guru Gobind Singh Refinery — 550 kWp (township) · 271.32 kWp (electrical &amp; mechanical building) · 4.5 MWp (ASRS 40 m height building), Bathinda'
+        },
+        {
+          lat: 22.573,
+          lng: 88.364,
+          label: 'West Bengal (Kolkata)',
+          detail: 'Sunville Renewable Energy — 10 kWp St. John\'s Church (heritage) · 10 kWp Indian Oil petrol pump Prabartan · 33 kWp Entertainment Colour Studio'
+        },
+        {
+          lat: 12.915,
+          lng: 74.856,
+          label: 'Karnataka (Mangalore)',
+          detail: 'Mukka Proteins Ltd. — 460 kWp solar rooftop power plant'
+        },
+        {
+          lat: 13.55,
+          lng: 80.02,
+          label: 'Andhra Pradesh (Sri City)',
+          detail: 'Hero Future Energies — 19.5 kWp solar rooftop dismantling &amp; re-installation, Omni Auto Ltd., Sri City (517588)'
+        },
+        { lat: 26.452, lng: 87.272, label: 'Nepal (Biratnagar)', detail: 'REnergo Developers Pvt. Ltd. — 800 kW ground-mount solar · GI Solar Ltd., Biratnagar' },
+        { lat: 26.615, lng: 88.015, label: 'Nepal (Jhapa)', detail: 'REnergo Developers Pvt. Ltd. — 5 MW ground-mount solar (ongoing), Jhapa' },
+        { lat: 26.728, lng: 85.925, label: 'Nepal (Janakpur)', detail: 'REnergo Developers Pvt. Ltd. — 9 MW ground-mount solar (ongoing), Janakpur' },
+        {
+          lat: 27.54,
+          lng: 82.97,
+          label: 'Nepal (Chanauta · Kapilvastu)',
+          detail: 'Pashupati Renewable Ltd. — Dharmanagar Solar Farm 10+15 MW ground-mount, Chanauta (Shivaraj area, Kapilvastu, Lumbini Province)'
+        },
+        { lat: 26.23, lng: 81.24, label: 'Uttar Pradesh (Rae Bareli)', detail: 'ITI Limited — Doorbhash Nagar, Rae Bareli-229010, UP' }
       ];
       var coverageMap = L.map(mapEl, {
         scrollWheelZoom: false,
@@ -3459,6 +3512,7 @@
       });
       function focusSite(i) {
         if (i < 0 || i >= markers.length) return;
+        coverageMap.closePopup();
         var s = sites[i];
         var z = Math.max(coverageMap.getZoom(), 7);
         if (reduceMotion) {
@@ -3468,8 +3522,54 @@
         }
         markers[i].openPopup();
       }
-      document.querySelectorAll('.location-card[data-map-index]').forEach(function (card) {
+      var nepalSiteIndices = [4, 5, 6, 7];
+      function focusNepalRegion() {
+        markers.forEach(function (m) {
+          m.closePopup();
+        });
+        coverageMap.closePopup();
+        var latlngs = nepalSiteIndices.map(function (idx) {
+          return L.latLng(sites[idx].lat, sites[idx].lng);
+        });
+        var b = L.latLngBounds(latlngs);
+        if (reduceMotion) {
+          coverageMap.fitBounds(b, { padding: [52, 52], maxZoom: 7 });
+        } else {
+          coverageMap.flyToBounds(b, { padding: [52, 52], maxZoom: 7, duration: 0.85 });
+        }
+        var sumLat = 0;
+        var sumLng = 0;
+        nepalSiteIndices.forEach(function (idx) {
+          sumLat += sites[idx].lat;
+          sumLng += sites[idx].lng;
+        });
+        var n = nepalSiteIndices.length;
+        var html = '<strong>Nepal — project sites</strong>';
+        nepalSiteIndices.forEach(function (idx, j) {
+          var si = sites[idx];
+          var sep = j
+            ? ' style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.1);"'
+            : ' style="margin-top:8px;"';
+          html +=
+            '<div' +
+            sep +
+            '><strong>' +
+            si.label +
+            '</strong><br/><span style="color:#A8A29E;font-size:12px;line-height:1.45;">' +
+            si.detail +
+            '</span></div>';
+        });
+        L.popup({ maxWidth: 300 })
+          .setLatLng([sumLat / n, sumLng / n])
+          .setContent(html)
+          .openOn(coverageMap);
+      }
+      document.querySelectorAll('#location-cards-strip .location-card').forEach(function (card) {
         function go() {
+          if (card.getAttribute('data-map-nepal') === 'true') {
+            focusNepalRegion();
+            return;
+          }
           var i = parseInt(card.getAttribute('data-map-index'), 10);
           if (!isNaN(i)) focusSite(i);
         }
