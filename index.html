@@ -143,7 +143,7 @@
     min-height: var(--nav-safe-top);
     box-sizing: border-box;
     max-width: 100%;
-    overflow-x: hidden;
+    overflow: visible;
     transition: background 0.4s ease, border-color 0.4s ease, padding 0.4s ease;
     background: transparent;
   }
@@ -230,6 +230,10 @@
     justify-content: flex-end;
     gap: 36px;
     flex: 1;
+  }
+  /* Inner wrapper: desktop uses contents so links stay in .nav-panel flex; mobile slide is fixed */
+  .nav-panel-slide {
+    display: contents;
   }
   .nav-tools {
     display: flex;
@@ -2087,8 +2091,17 @@
       flex-wrap: nowrap;
       min-height: 0;
       transition: background 0.35s ease, border-color 0.35s ease;
+      /* Always a bar so hero doesn’t read through the fixed nav on small scroll */
+      background: rgba(10, 10, 10, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      overflow: visible;
     }
-    nav.scrolled { padding: 10px max(16px, env(safe-area-inset-left)) 10px max(16px, env(safe-area-inset-right)); }
+    /* Keep vertical padding stable — was 10px when scrolled, which shrank the bar vs --nav-safe-top */
+    nav.scrolled {
+      padding: 14px max(16px, env(safe-area-inset-left)) 14px max(16px, env(safe-area-inset-right));
+      background: rgba(10, 10, 10, 0.97);
+      border-bottom-color: var(--border-subtle);
+    }
     .nav-logo {
       margin-right: clamp(28px, 8vw, 64px);
       min-width: 0;
@@ -2100,18 +2113,32 @@
       transform-origin: left center;
     }
     .nav-toggle { display: flex; }
+    /* Shell takes no row width — avoids horizontal scroll from full desktop link row */
     .nav-panel {
+      flex: 0 0 0;
+      width: 0;
+      min-width: 0;
+      overflow: visible;
+      position: static;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      gap: 0;
+    }
+    .nav-panel-slide {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: 28px;
       position: fixed;
       top: 0;
       right: 0;
       bottom: 0;
       height: auto;
       width: min(300px, 86vw);
-      margin: 0;
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: flex-start;
-      gap: 28px;
       padding: 88px 24px 32px;
       background: rgba(12, 12, 12, 0.98);
       border-left: 1px solid var(--border-subtle);
@@ -2120,7 +2147,7 @@
       z-index: 99;
       box-shadow: -24px 0 48px rgba(0,0,0,0.35);
     }
-    .nav-panel.is-open {
+    .nav-panel.is-open .nav-panel-slide {
       transform: translateX(0);
     }
     .nav-links {
@@ -2542,6 +2569,7 @@
     <img class="logo-asset" src="images/Gemini_Generated_Image_iw9hnxiw9hnxiw9h-Photoroom.svg" width="1280" height="1277" alt="KETE — Kern Elec Tech Experts" fetchpriority="high" decoding="async"/>
   </a>
   <div class="nav-panel" id="nav-panel">
+    <div class="nav-panel-slide">
     <ul class="nav-links" id="nav-menu">
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
@@ -2552,6 +2580,7 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Get Started</a>
+    </div>
   </div>
   <div class="nav-tools">
     <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
