@@ -919,7 +919,7 @@
     -webkit-overflow-scrolling: touch;
   }
   .map-container .location-cards {
-    justify-content: center;
+    justify-content: flex-start;
     padding-left: 4px;
     padding-right: 4px;
   }
@@ -1252,7 +1252,7 @@
     margin-bottom: 16px;
   }
 
-  /* Testimonials — static “20+” anchor + infinite quote rail */
+  /* Testimonials — static stat anchor + infinite quote rail */
   .testimonials-marquee-shell {
     display: grid;
     grid-template-columns: minmax(200px, 270px) minmax(0, 1fr);
@@ -2580,7 +2580,7 @@
       <span class="hero-headline-accent">Solar</span>, built<br/>
       for scale
     </h1>
-    <p class="hero-sub">Whether megawatt-scale solar or refinery-grade instrumentation, we design and deliver dependable power and control systems across India and Nepal—backed by twenty years of disciplined field work.</p>
+    <p class="hero-sub">Whether megawatt-scale solar or refinery-grade instrumentation, we design and deliver dependable power and control systems across India and Nepal—backed by fifteen years of disciplined field work.</p>
     <div class="hero-actions">
       <a href="#services" class="btn-primary">Explore Services →</a>
       <a href="#about" class="btn-ghost">Our Footprint</a>
@@ -2603,7 +2603,7 @@
     <div class="stat-label">Tons CO₂<br/>Saved</div>
   </div>
   <div class="stat-item">
-    <div class="stat-value stat-value--count" data-target="20" data-duration="1180"><span class="stat-v-num">0</span><span class="stat-v-suffix">+</span></div>
+    <div class="stat-value stat-value--count" data-target="15" data-duration="1180"><span class="stat-v-num">0</span><span class="stat-v-suffix">+</span></div>
     <div class="stat-label">Years of<br/>Experience</div>
   </div>
 </div>
@@ -2843,10 +2843,10 @@
   </div>
   <p id="testimonials-marquee-desc" class="partners-visually-hidden">Client quotes scroll beside a static summary. Voices: Sanjeet Singh, Zahir Shah, Amrendra Kumar, Mayank Rohilla, and Sandip Shah.</p>
   <div class="testimonials-marquee-shell">
-    <aside class="testimonials-stat-anchor" aria-label="Project scale at a glance">
+    <aside class="testimonials-stat-anchor" aria-label="Experience at a glance">
       <div class="testimonial-card testimonial-card--stat">
-        <div class="testimonial-stat-num">20+</div>
-        <div class="testimonial-stat-label">Major Projects<br/>Delivered</div>
+        <div class="testimonial-stat-num">15+</div>
+        <div class="testimonial-stat-label">Years of<br/>Experience</div>
         <div class="testimonial-stat-region">Across India<br/>& Nepal</div>
         <a href="#contact" class="btn-primary">Work With Us →</a>
       </div>
@@ -3023,7 +3023,7 @@
         <img class="footer-logo logo-asset" src="images/Gemini_Generated_Image_iw9hnxiw9hnxiw9h-Photoroom.svg" alt="KETE — Kern Elec Tech Experts" width="1280" height="1277" loading="lazy" decoding="async"/>
       </div>
       <div class="footer-tagline">Electrical | Instrumentation | Control</div>
-      <p class="footer-blurb"><strong>Kern Elec Tech Experts LLP</strong> delivers specialized electrical, instrumentation, and renewable energy solutions with over two decades of experience.</p>
+      <p class="footer-blurb"><strong>Kern Elec Tech Experts LLP</strong> delivers specialized electrical, instrumentation, and renewable energy solutions with 15+ years of experience.</p>
     </div>
     <div>
       <div class="footer-col-title">Quick Links</div>
@@ -3207,6 +3207,11 @@
     var hint = document.getElementById('location-cards-more');
     var fade = document.getElementById('location-cards-fade');
     if (!strip || !hint) return;
+    function scrollStripToStart() {
+      strip.scrollLeft = 0;
+    }
+    scrollStripToStart();
+    window.addEventListener('load', scrollStripToStart, { once: true });
     function update() {
       var sw = strip.scrollWidth;
       var cw = strip.clientWidth;
@@ -3229,7 +3234,11 @@
       } catch (e) {}
     }
     requestAnimationFrame(function () {
-      requestAnimationFrame(update);
+      scrollStripToStart();
+      requestAnimationFrame(function () {
+        scrollStripToStart();
+        update();
+      });
     });
   })();
 
@@ -3558,45 +3567,24 @@
       }
       var nepalSiteIndices = [4, 5, 6, 7];
       function focusNepalRegion() {
-        markers.forEach(function (m) {
-          m.closePopup();
-        });
         coverageMap.closePopup();
         var latlngs = nepalSiteIndices.map(function (idx) {
           return L.latLng(sites[idx].lat, sites[idx].lng);
         });
         var b = L.latLngBounds(latlngs);
-        if (reduceMotion) {
-          coverageMap.fitBounds(b, { padding: [52, 52], maxZoom: 7 });
-        } else {
-          coverageMap.flyToBounds(b, { padding: [52, 52], maxZoom: 7, duration: 0.85 });
+        var firstNepalIdx = nepalSiteIndices[0];
+        function openFirstNepalPopup() {
+          if (markers[firstNepalIdx]) markers[firstNepalIdx].openPopup();
         }
-        var sumLat = 0;
-        var sumLng = 0;
-        nepalSiteIndices.forEach(function (idx) {
-          sumLat += sites[idx].lat;
-          sumLng += sites[idx].lng;
-        });
-        var n = nepalSiteIndices.length;
-        var html = '<strong>Nepal — project sites</strong>';
-        nepalSiteIndices.forEach(function (idx, j) {
-          var si = sites[idx];
-          var sep = j
-            ? ' style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.1);"'
-            : ' style="margin-top:8px;"';
-          html +=
-            '<div' +
-            sep +
-            '><strong>' +
-            si.label +
-            '</strong><br/><span style="color:#A8A29E;font-size:12px;line-height:1.45;">' +
-            si.detail +
-            '</span></div>';
-        });
-        L.popup({ maxWidth: 300 })
-          .setLatLng([sumLat / n, sumLng / n])
-          .setContent(html)
-          .openOn(coverageMap);
+        if (reduceMotion) {
+          coverageMap.fitBounds(b, { padding: [52, 52], maxZoom: 8 });
+          requestAnimationFrame(function () {
+            requestAnimationFrame(openFirstNepalPopup);
+          });
+        } else {
+          coverageMap.flyToBounds(b, { padding: [52, 52], maxZoom: 8, duration: 0.85 });
+          setTimeout(openFirstNepalPopup, 900);
+        }
       }
       document.querySelectorAll('#location-cards-strip .location-card').forEach(function (card) {
         function go() {
