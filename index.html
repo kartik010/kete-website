@@ -843,6 +843,16 @@
       0 0 0 3px rgba(245, 130, 10, 0.4),
       0 4px 14px rgba(245, 130, 10, 0.35);
   }
+  .kete-map-marker-pulse--blue {
+    border-color: rgba(59, 130, 246, 0.5);
+  }
+  .kete-map-marker-dot--kathmandu {
+    background: #3b82f6;
+    box-shadow:
+      0 0 0 2px rgba(0, 0, 0, 0.95),
+      0 0 0 3px rgba(59, 130, 246, 0.45),
+      0 4px 14px rgba(59, 130, 246, 0.35);
+  }
 
   /* Leaflet chrome — on-brand */
   .map-leaflet .leaflet-control-zoom a {
@@ -911,6 +921,12 @@
     font-size: 20px !important;
   }
   .map-leaflet a.leaflet-popup-close-button:hover { color: var(--orange) !important; }
+  .map-leaflet .kete-popup-kathmandu .leaflet-popup-content-wrapper {
+    border-color: #3b82f6 !important;
+  }
+  .map-leaflet .kete-popup-kathmandu .leaflet-popup-tip {
+    border-top-color: #161616 !important;
+  }
   .map-legend-hint {
     font-size: 11px;
     letter-spacing: 0.12em;
@@ -964,6 +980,11 @@
   }
   .location-cards-more.is-hidden {
     display: none;
+  }
+  .location-cards-more--at-end .location-cards-more-arrows,
+  .location-cards-more--at-end .location-cards-more-dots span {
+    animation: none;
+    opacity: 0.5;
   }
   .location-cards-more-dots {
     display: inline-flex;
@@ -1065,6 +1086,27 @@
     margin-top: 2px;
     text-transform: none;
     letter-spacing: 0;
+  }
+  .location-card-cap-kathmandu {
+    display: block;
+    color: #1a1a1a;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .location-card-sub--nepal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 5px;
+    font-size: 7px;
+    line-height: 1.45;
+    color: #555;
+  }
+  .location-card-sub--nepal-list .nepal-proj {
+    display: block;
+    font-weight: 600;
+    color: #444;
   }
 
   /* SERVICES */
@@ -2697,7 +2739,7 @@
     </div>
     <div class="map-container reveal" id="map-section">
       <div class="map-leaflet-shell" id="map-leaflet-shell">
-        <div id="kete-coverage-map" class="map-leaflet" role="region" aria-label="Map: KETE project sites across India and Nepal — HMEL Bathinda, Kolkata Sunville sites, Mukka Mangalore, Sri City, Terai and eastern Nepal solar plants, Rae Bareli"></div>
+        <div id="kete-coverage-map" class="map-leaflet" role="region" aria-label="Map: KETE project sites across India and Nepal — Kathmandu hub, Terai solar plants (Biratnagar, Jhapa, Janakpur, Chanauta), HMEL Bathinda, Kolkata, Mangalore, Sri City, Rae Bareli"></div>
         <figure class="map-static-fallback" id="map-static-fallback" aria-hidden="true">
           <img src="images/india-nepal-geo.svg" alt="Map of India and Nepal with project regions" width="320" height="360" loading="lazy" decoding="async"/>
         </figure>
@@ -2722,9 +2764,9 @@
           <div class="location-card-photo"><img src="images/project_omni.webp" alt="" width="120" height="120" loading="lazy" decoding="async"/></div>
           <figcaption class="location-card-cap">Andhra Pradesh<span class="location-card-sub">Hero Future · 19.5 kWp</span></figcaption>
         </figure>
-        <figure class="location-card" tabindex="0" role="button" data-map-nepal="true" aria-label="Show all Nepal project sites on map — Biratnagar, Jhapa, Janakpur, Chanauta">
+        <figure class="location-card" tabindex="0" role="button" data-map-nepal="true" aria-label="Show Nepal on map — Kathmandu hub; projects: 800 kW Biratnagar, 5 MW Jhapa, 9 MW Janakpur, 10+15 MW Chanauta">
           <div class="location-card-photo"><img src="images/WhatsApp%20Image%202026-04-03%20at%2015.28.27.webp" alt="" width="120" height="120" loading="lazy" decoding="async"/></div>
-          <figcaption class="location-card-cap">Nepal<span class="location-card-sub">Biratnagar · Jhapa · Janakpur · Chanauta</span></figcaption>
+          <figcaption class="location-card-cap"><span class="location-card-cap-kathmandu">Kathmandu</span><span class="location-card-sub location-card-sub--nepal-list"><span class="nepal-proj">800 kW · Biratnagar</span><span class="nepal-proj">5 MW · Jhapa</span><span class="nepal-proj">9 MW · Janakpur</span><span class="nepal-proj">10+15 MW · Chanauta</span></span></figcaption>
         </figure>
         <figure class="location-card" data-map-index="8" tabindex="0" role="button" aria-label="Show Uttar Pradesh Rae Bareli on map">
           <div class="location-card-photo"><img src="images/WhatsApp%20Image%202026-04-01%20at%2021.46.33.webp" alt="" width="120" height="120" loading="lazy" decoding="async"/></div>
@@ -3256,12 +3298,14 @@
       var sl = strip.scrollLeft;
       var canScroll = sw > cw + 6;
       var atEnd = canScroll && sl >= sw - cw - 12;
-      var show = canScroll && !atEnd;
+      /* Keep hint visible whenever the strip overflows — avoids layout jump when scrolled to the end */
+      var show = canScroll;
       hint.classList.toggle('is-hidden', !show);
+      hint.classList.toggle('location-cards-more--at-end', show && atEnd);
       hint.setAttribute('aria-hidden', show ? 'false' : 'true');
       if (fade) {
-        fade.classList.toggle('is-visible', show);
-        fade.setAttribute('aria-hidden', show ? 'false' : 'true');
+        fade.classList.toggle('is-visible', show && !atEnd);
+        fade.setAttribute('aria-hidden', show && !atEnd ? 'false' : 'true');
       }
     }
     strip.addEventListener('scroll', update, { passive: true });
@@ -3591,6 +3635,20 @@
         m.addTo(coverageMap);
         markers.push(m);
       });
+      var kathmanduLatLng = L.latLng(27.7172, 85.324);
+      var kathmanduIcon = L.divIcon({
+        className: 'kete-map-divicon',
+        html:
+          '<div class="kete-map-marker"><span class="kete-map-marker-pulse kete-map-marker-pulse--blue"></span><span class="kete-map-marker-dot kete-map-marker-dot--kathmandu"></span></div>',
+        iconSize: [28, 28],
+        iconAnchor: [14, 14],
+        popupAnchor: [0, -12]
+      });
+      var nepalSummaryPopupHtml =
+        '<strong style="color:#93c5fd;">Kathmandu</strong><br/><span style="color:#A8A29E;font-size:12px;"><strong style="color:#E7E5E4;font-weight:700;">Nepal Projects</strong><span style="display:flex;flex-direction:column;gap:8px;margin-top:10px;line-height:1.45;"><span>800 kW · Biratnagar</span><span>5 MW · Jhapa</span><span>9 MW · Janakpur</span><span>10+15 MW · Chanauta (Kapilvastu)</span></span></span>';
+      var kathmanduMarker = L.marker(kathmanduLatLng, { icon: kathmanduIcon, zIndexOffset: 500 });
+      kathmanduMarker.bindPopup(nepalSummaryPopupHtml, { className: 'kete-popup-kathmandu' });
+      kathmanduMarker.addTo(coverageMap);
       function focusSite(i) {
         if (i < 0 || i >= markers.length) return;
         coverageMap.closePopup();
@@ -3610,9 +3668,9 @@
           return L.latLng(sites[idx].lat, sites[idx].lng);
         });
         var b = L.latLngBounds(latlngs);
-        var firstNepalIdx = nepalSiteIndices[0];
+        b.extend(kathmanduLatLng);
         function openFirstNepalPopup() {
-          if (markers[firstNepalIdx]) markers[firstNepalIdx].openPopup();
+          kathmanduMarker.openPopup();
         }
         if (reduceMotion) {
           coverageMap.fitBounds(b, { padding: [52, 52], maxZoom: 8 });

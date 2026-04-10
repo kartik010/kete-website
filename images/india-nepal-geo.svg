@@ -5,6 +5,8 @@
     d="M148 42 L168 38 L182 52 L198 48 L210 62 L228 58 L242 72 L258 88 L268 108 L276 132 L282 158 L288 188 L292 218 L288 252 L278 288 L262 318 L238 332 L210 338 L178 334 L148 322 L118 308 L92 288 L72 262 L58 232 L50 198 L48 168 L52 138 L62 108 L78 82 L98 62 L122 48 Z"/>
   <path fill="rgba(245,130,10,0.22)" stroke="#E47A0A" stroke-width="1" stroke-linejoin="round"
     d="M210 62 L228 44 L242 36 L254 42 L262 56 L258 72 L246 80 L232 76 L218 68 Z"/>
+  <!-- Kathmandu (reference) — blue; project sites remain orange -->
+  <circle cx="236" cy="58" r="3.8" fill="#2563EB" opacity="0.92"/>
   <circle cx="118" cy="168" r="4" fill="#F5820A" opacity="0.85"/>
   <circle cx="198" cy="128" r="4" fill="#F5820A" opacity="0.85"/>
   <circle cx="168" cy="228" r="4" fill="#F5820A" opacity="0.85"/>
