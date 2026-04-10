@@ -6,6 +6,10 @@
 <meta name="description" content="KETE — Kern Elec Tech Experts. Electrical, instrumentation, control, and solar EPC across India and Nepal. Commercial, industrial, and residential solar."/>
 <meta name="theme-color" content="#0A0A0A"/>
 <meta name="color-scheme" content="dark"/>
+<link rel="icon" href="images/favicon-32.png" type="image/png" sizes="32x32"/>
+<link rel="icon" href="images/favicon-48.png" type="image/png" sizes="48x48"/>
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml" sizes="any"/>
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png" sizes="180x180"/>
 <meta property="og:title" content="KETE — Kern Elec Tech Experts"/>
 <meta property="og:description" content="Electrical, instrumentation, control, and solar — engineered for scale across India and Nepal."/>
 <meta property="og:type" content="website"/>
@@ -923,21 +927,12 @@
     position: relative;
     width: 100%;
   }
+  /* Fade disabled: right-edge gradient read as stray scrollbar/chrome next to the strip */
   .location-cards-fade {
-    position: absolute;
-    top: 12px;
-    right: 0;
-    bottom: 44px;
-    width: 42px;
-    pointer-events: none;
-    z-index: 4;
-    background: linear-gradient(90deg, transparent 0%, rgba(10, 10, 10, 0.55) 55%, rgba(10, 10, 10, 0.92) 100%);
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    border-radius: 0 4px 4px 0;
+    display: none;
   }
   .location-cards-fade.is-visible {
-    opacity: 1;
+    opacity: 0;
   }
   .location-cards-more {
     display: flex;
@@ -1087,7 +1082,10 @@
     transition: background 0.3s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     text-decoration: none;
     color: inherit;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
   }
   a.service-card * {
     pointer-events: none;
@@ -1103,6 +1101,7 @@
   .service-card:hover { background: var(--dark-2); }
   .service-img {
     width: 100%; height: 200px;
+    flex-shrink: 0;
     object-fit: cover;
     margin-bottom: 28px;
     filter: brightness(0.7) saturate(0.6);
@@ -1128,9 +1127,12 @@
     margin: 0;
     font-size: 14px; color: var(--text-secondary);
     line-height: 1.7; position: relative; z-index: 1;
+    flex: 1 1 auto;
+    min-height: 0;
   }
   .service-arrow {
-    margin-top: 24px;
+    margin-top: auto;
+    padding-top: 24px;
     display: inline-flex; align-items: center; gap: 6px;
     font-size: 12px; font-weight: 600;
     letter-spacing: 0.1em; text-transform: uppercase;
@@ -1344,7 +1346,7 @@
     display: flex;
     width: max-content;
     align-items: stretch;
-    animation: testimonialsMarquee 105s linear infinite;
+    animation: testimonialsMarquee 92s linear infinite;
     will-change: transform;
   }
   .testimonials-marquee:hover {
@@ -2013,12 +2015,16 @@
       padding: 48px 36px !important;
       box-shadow: none !important;
       border-radius: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      height: 100% !important;
     }
     #services .scroll-card-slide .service-img {
       position: relative !important;
       inset: auto !important;
       width: 100% !important;
       height: 200px !important;
+      flex-shrink: 0 !important;
       margin-bottom: 28px !important;
       filter: brightness(0.7) saturate(0.6) !important;
     }
@@ -2036,6 +2042,8 @@
       color: var(--text-secondary) !important;
       text-transform: none !important;
       font-size: 14px !important;
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
     }
     #portfolio .scroll-card-slide .portfolio-item {
       width: 100% !important;
@@ -2258,7 +2266,7 @@
       padding: 2.75rem 1.75rem 2rem;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: flex-start;
       align-items: stretch;
       overflow: hidden;
       box-shadow: 0 1.25rem 3.75rem rgba(0, 0, 0, 0.55);
@@ -2293,6 +2301,7 @@
     }
     #services .scroll-card-slide .service-num {
       color: rgba(245, 130, 10, 0.35);
+      margin-top: auto;
     }
     #services .scroll-card-slide .service-title {
       font-size: clamp(1.65rem, 7.5vw, 2.35rem);
@@ -2310,6 +2319,8 @@
     }
     #services .scroll-card-slide .service-arrow {
       color: var(--orange-light);
+      flex-shrink: 0;
+      padding-top: 0.75rem;
     }
     #portfolio .scroll-card-slide .portfolio-item {
       position: relative;
@@ -2569,7 +2580,7 @@
       <span class="hero-headline-accent">Solar</span>, built<br/>
       for scale
     </h1>
-    <p class="hero-sub">From rooftop arrays to refinery-grade instrumentation, we deliver reliable energy and control systems across India and Nepal—backed by twenty years on the ground.</p>
+    <p class="hero-sub">Whether megawatt-scale solar or refinery-grade instrumentation, we design and deliver dependable power and control systems across India and Nepal—backed by twenty years of disciplined field work.</p>
     <div class="hero-actions">
       <a href="#services" class="btn-primary">Explore Services →</a>
       <a href="#about" class="btn-ghost">Our Footprint</a>
@@ -3507,9 +3518,10 @@
       ];
       var coverageMap = L.map(mapEl, {
         scrollWheelZoom: false,
-        zoomControl: true,
+        zoomControl: false,
         worldCopyJump: true
       });
+      L.control.zoom({ position: 'bottomleft' }).addTo(coverageMap);
       L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: 'abcd',
