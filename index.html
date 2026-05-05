@@ -2294,6 +2294,10 @@
       padding-right: max(16px, env(safe-area-inset-right));
       box-sizing: border-box;
       isolation: isolate;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+      will-change: transform;
     }
     #portfolio .scroll-card-slide {
       background: linear-gradient(180deg, #141414 0%, var(--dark) 45%, #0e0e0e 100%);
@@ -2419,6 +2423,9 @@
       overflow: hidden;
       box-shadow: 0 1.25rem 3.75rem rgba(0, 0, 0, 0.55);
       border-radius: 4px;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      transform: translateZ(0);
     }
     #portfolio .scroll-card-slide .portfolio-title {
       font-size: clamp(1.15rem, 4.5vw, 1.5rem);
@@ -3438,6 +3445,17 @@
     var t = Math.min(1, Math.max(0, window.scrollY / maxScroll));
     root.style.setProperty('--solar-t', t.toFixed(4));
   }
+
+  function applyPortfolioStackOrder() {
+    if (!window.matchMedia('(max-width: 900px)').matches) return;
+    var slides = document.querySelectorAll('#portfolio .scroll-card-slide');
+    slides.forEach(function (slide, idx) {
+      slide.style.zIndex = String(idx + 1);
+    });
+  }
+  applyPortfolioStackOrder();
+  window.addEventListener('resize', applyPortfolioStackOrder, { passive: true });
+  window.addEventListener('orientationchange', applyPortfolioStackOrder, { passive: true });
 
   var navPanel = document.getElementById('nav-panel');
   var navToggle = document.getElementById('nav-toggle');
