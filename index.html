@@ -2887,7 +2887,7 @@
       </div>
     </div>
     <div class="scroll-card-slide">
-      <div class="portfolio-item reveal reveal-delay-1">
+      <div class="portfolio-item reveal">
         <img src="images/project_hml.webp" alt="Guru Gobind Singh Refinery 550 KWp township RCC rooftop solar, Bathinda, Punjab — Gensol Ltd." class="portfolio-img" width="1200" height="900" loading="lazy" decoding="async"/>
         <div class="portfolio-overlay">
           <div class="portfolio-client">GURU GOBIND SINGH REFINERY (GENSOL LTD.)</div>
@@ -2897,7 +2897,7 @@
       </div>
     </div>
     <div class="scroll-card-slide">
-      <div class="portfolio-item reveal reveal-delay-2">
+      <div class="portfolio-item reveal">
         <img src="images/guru-gobind.webp" alt="Guru Gobind Singh Refinery 4.5 MWp solar rooftop, Bathinda, Punjab — Gensol Ltd." class="portfolio-img" width="1200" height="900" loading="lazy" decoding="async"/>
         <div class="portfolio-overlay">
           <div class="portfolio-client">Guru Gobind Singh Refinery (Gensol Ltd.)</div>
@@ -2907,7 +2907,7 @@
       </div>
     </div>
     <div class="scroll-card-slide">
-      <div class="portfolio-item reveal reveal-delay-3">
+      <div class="portfolio-item reveal">
         <img src="images/guru-gobind-2.webp" alt="Guru Gobind Singh Refinery 271.32 KWp tinshed rooftop plant, Bathinda, Punjab — Gensol Ltd." class="portfolio-img" width="1200" height="900" loading="lazy" decoding="async"/>
         <div class="portfolio-overlay">
           <div class="portfolio-client">GURU GOBIND SINGH REFINERY (GENSOL LTD.)</div>
@@ -2947,7 +2947,7 @@
       </div>
     </div>
     <div class="scroll-card-slide">
-      <div class="portfolio-item reveal reveal-delay-1">
+      <div class="portfolio-item reveal">
         <img src="images/pashupati-renewable.webp" alt="Pashupati Renewable Ltd. 10+15 MW ground-mount solar at Chanauta, Nepal (RDPL)" class="portfolio-img" width="1200" height="900" loading="lazy" decoding="async"/>
         <div class="portfolio-overlay">
           <div class="portfolio-client">Pashupati Renewable Ltd. (RDPL)</div>
@@ -3441,17 +3441,6 @@
     var t = Math.min(1, Math.max(0, window.scrollY / maxScroll));
     root.style.setProperty('--solar-t', t.toFixed(4));
   }
-
-  function applyPortfolioStackOrder() {
-    if (!window.matchMedia('(max-width: 900px)').matches) return;
-    var slides = document.querySelectorAll('#portfolio .scroll-card-slide');
-    slides.forEach(function (slide, idx) {
-      slide.style.zIndex = String(idx + 1);
-    });
-  }
-  applyPortfolioStackOrder();
-  window.addEventListener('resize', applyPortfolioStackOrder, { passive: true });
-  window.addEventListener('orientationchange', applyPortfolioStackOrder, { passive: true });
 
   var navPanel = document.getElementById('nav-panel');
   var navToggle = document.getElementById('nav-toggle');
