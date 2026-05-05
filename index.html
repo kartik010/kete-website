@@ -2298,6 +2298,16 @@
     #portfolio .scroll-card-slide {
       background: linear-gradient(180deg, #141414 0%, var(--dark) 45%, #0e0e0e 100%);
     }
+    /* Portfolio-only: disable sticky stack on mobile to prevent overlap flicker/slabs */
+    #portfolio .scroll-card-slide {
+      position: relative;
+      top: auto;
+      min-height: 0;
+      z-index: auto;
+      padding-top: 0;
+      padding-bottom: 14px;
+      background: transparent;
+    }
     #services .scroll-card-slide:first-child,
     #portfolio .scroll-card-slide:first-child {
       min-height: min(84svh, 40rem);
