@@ -2298,16 +2298,6 @@
     #portfolio .scroll-card-slide {
       background: linear-gradient(180deg, #141414 0%, var(--dark) 45%, #0e0e0e 100%);
     }
-    /* Portfolio-only: disable sticky stack on mobile to prevent overlap flicker/slabs */
-    #portfolio .scroll-card-slide {
-      position: relative;
-      top: auto;
-      min-height: 0;
-      z-index: auto;
-      padding-top: 0;
-      padding-bottom: 14px;
-      background: transparent;
-    }
     #services .scroll-card-slide:first-child,
     #portfolio .scroll-card-slide:first-child {
       min-height: min(84svh, 40rem);
@@ -2340,22 +2330,6 @@
       transform: none !important;
       transition: none !important;
     }
-    #services .scroll-card-slide:nth-child(1),
-    #portfolio .scroll-card-slide:nth-child(1) { z-index: 1; }
-    #services .scroll-card-slide:nth-child(2),
-    #portfolio .scroll-card-slide:nth-child(2) { z-index: 2; }
-    #services .scroll-card-slide:nth-child(3),
-    #portfolio .scroll-card-slide:nth-child(3) { z-index: 3; }
-    #services .scroll-card-slide:nth-child(4),
-    #portfolio .scroll-card-slide:nth-child(4) { z-index: 4; }
-    #portfolio .scroll-card-slide:nth-child(5) { z-index: 5; }
-    #portfolio .scroll-card-slide:nth-child(6) { z-index: 6; }
-    #portfolio .scroll-card-slide:nth-child(7) { z-index: 7; }
-    #portfolio .scroll-card-slide:nth-child(8) { z-index: 8; }
-    #portfolio .scroll-card-slide:nth-child(9) { z-index: 9; }
-    #portfolio .scroll-card-slide:nth-child(10) { z-index: 10; }
-    #portfolio .scroll-card-slide:nth-child(11) { z-index: 11; }
-    #portfolio .scroll-card-slide:nth-child(12) { z-index: 12; }
     #services .scroll-card-slide .service-card {
       position: relative;
       width: min(100%, 36rem);
@@ -3451,6 +3425,22 @@
     var t = Math.min(1, Math.max(0, window.scrollY / maxScroll));
     root.style.setProperty('--solar-t', t.toFixed(4));
   }
+
+  function applyStickyDeckZ() {
+    if (!window.matchMedia('(max-width: 900px)').matches) return;
+    var groups = ['#services', '#portfolio'];
+    groups.forEach(function (selector) {
+      var rootEl = document.querySelector(selector);
+      if (!rootEl) return;
+      var slides = rootEl.querySelectorAll('.scroll-card-slide');
+      slides.forEach(function (slide, idx) {
+        slide.style.zIndex = String(idx + 1);
+      });
+    });
+  }
+  applyStickyDeckZ();
+  window.addEventListener('resize', applyStickyDeckZ, { passive: true });
+  window.addEventListener('orientationchange', applyStickyDeckZ, { passive: true });
 
   var navPanel = document.getElementById('nav-panel');
   var navToggle = document.getElementById('nav-toggle');
