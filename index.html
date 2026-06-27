@@ -29,8 +29,8 @@
 <title>KETE - Kern Elec Tech Experts | Electrical · Instrumentation · Control</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
-<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"/></noscript>
 <link rel="dns-prefetch" href="https://unpkg.com"/>
 <link rel="dns-prefetch" href="https://a.basemaps.cartocdn.com"/>
 <link rel="preconnect" href="https://unpkg.com" crossorigin/>
@@ -736,6 +736,85 @@
     color: var(--ink); margin-bottom: 8px;
   }
   .feature-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* KETE VALUES — continues Coverage / About band, full-width grid */
+  #kete-values {
+    background: var(--dark);
+    position: relative;
+    padding: 0 clamp(28px, 5vw, 60px) 120px 60px;
+  }
+  .kete-values-header {
+    margin-bottom: clamp(36px, 5vw, 52px);
+    max-width: 640px;
+  }
+  .kete-values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--border-subtle);
+  }
+  .kete-values-pillar {
+    background: var(--dark-2);
+    padding: clamp(24px, 3vw, 32px) clamp(20px, 2.5vw, 28px);
+    border-left: 2px solid transparent;
+    transition: background 0.3s ease, border-color 0.35s ease;
+  }
+  .kete-values-pillar:hover {
+    background: rgba(245, 130, 10, 0.04);
+    border-left-color: var(--orange);
+  }
+  .kete-values-letter {
+    font-family: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+    font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--white);
+    margin-bottom: 14px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), color 0.35s ease, text-shadow 0.35s ease;
+  }
+  .kete-values-grid.reveal-children.visible .kete-values-pillar:nth-child(1) .kete-values-letter { transition-delay: 0.08s; }
+  .kete-values-grid.reveal-children.visible .kete-values-pillar:nth-child(2) .kete-values-letter { transition-delay: 0.16s; }
+  .kete-values-grid.reveal-children.visible .kete-values-pillar:nth-child(3) .kete-values-letter { transition-delay: 0.24s; }
+  .kete-values-grid.reveal-children.visible .kete-values-pillar:nth-child(4) .kete-values-letter { transition-delay: 0.32s; }
+  .kete-values-grid.reveal-children.visible .kete-values-letter {
+    opacity: 1;
+    transform: translateY(0);
+    animation: keteLetterGlow 4.5s ease-in-out infinite;
+  }
+  .kete-values-grid.reveal-children.visible .kete-values-pillar:nth-child(1) .kete-values-letter { animation-delay: 0s; }
+  .kete-values-grid.reveal-children.visible .kete-values-pillar:nth-child(2) .kete-values-letter { animation-delay: 0.35s; }
+  .kete-values-grid.reveal-children.visible .kete-values-pillar:nth-child(3) .kete-values-letter { animation-delay: 0.7s; }
+  .kete-values-grid.reveal-children.visible .kete-values-pillar:nth-child(4) .kete-values-letter { animation-delay: 1.05s; }
+  @keyframes keteLetterGlow {
+    0%, 100% {
+      color: var(--white);
+      text-shadow: 0 0 0 transparent;
+    }
+    50% {
+      color: var(--orange-light);
+      text-shadow: 0 0 14px rgba(245, 130, 10, 0.4);
+    }
+  }
+  .kete-values-title {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+  .kete-values-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+  @media (max-width: 1100px) and (min-width: 901px) {
+    .kete-values-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
 
   /* Map — Leaflet + Carto Dark (OSM), framed to match site */
   .map-container {
@@ -1936,6 +2015,8 @@
     html { scroll-behavior: auto; }
     .hero-bg { animation: none !important; }
     .hero-headline-accent { animation: none !important; will-change: auto; }
+    .kete-values-grid.reveal-children.visible .kete-values-letter { animation: none !important; }
+    .kete-values-letter { opacity: 1 !important; transform: none !important; }
     .reveal, .reveal.visible,
     .reveal-slide-left, .reveal-slide-right, .reveal.reveal-scale,
     .reveal-fade-only, .reveal-fade-only.visible,
@@ -2240,6 +2321,9 @@
     .stat-item { border-right: none; border-bottom: 1px solid var(--border-subtle); padding: 0 0 20px; }
     .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
     #about { padding: 80px 24px; }
+    #kete-values { padding: 48px 24px 80px; }
+    .kete-values-grid { grid-template-columns: 1fr; }
+    .kete-values-pillar:hover { border-left-color: var(--orange); }
     .about-layout { grid-template-columns: 1fr; gap: 40px; }
     .about-copy { max-width: none; }
     .map-container {
@@ -2797,6 +2881,37 @@
         </p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- KETE VALUES -->
+<section id="kete-values" aria-labelledby="kete-values-heading">
+  <div class="kete-values-header">
+    <div class="section-label reveal">Our values</div>
+    <h2 id="kete-values-heading" class="section-headline reveal reveal-delay-1">Built on KETE</h2>
+    <p class="section-sub reveal reveal-delay-2">Knowledge, excellence, trust, and empowerment — the principles behind every system we engineer.</p>
+  </div>
+  <div class="kete-values-grid reveal reveal-children">
+    <article class="kete-values-pillar">
+      <div class="kete-values-letter" aria-hidden="true">K</div>
+      <h3 class="kete-values-title">Knowledge-Driven</h3>
+      <p class="kete-values-desc">We combine deep technical expertise and continuous learning to deliver future-ready energy solutions.</p>
+    </article>
+    <article class="kete-values-pillar">
+      <div class="kete-values-letter" aria-hidden="true">E</div>
+      <h3 class="kete-values-title">Excellence</h3>
+      <p class="kete-values-desc">We uphold the highest standards of engineering and quality in every project.</p>
+    </article>
+    <article class="kete-values-pillar">
+      <div class="kete-values-letter" aria-hidden="true">T</div>
+      <h3 class="kete-values-title">Trust</h3>
+      <p class="kete-values-desc">We build lasting partnerships through integrity and reliability.</p>
+    </article>
+    <article class="kete-values-pillar">
+      <div class="kete-values-letter" aria-hidden="true">E</div>
+      <h3 class="kete-values-title">Empower</h3>
+      <p class="kete-values-desc">We empower people and communities through sustainable energy solutions.</p>
+    </article>
   </div>
 </section>
 
