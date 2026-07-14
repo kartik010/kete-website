@@ -1,0 +1,24 @@
+/* Discourage casual copying of page content. Forms stay selectable. */
+html, body, body *:not(input):not(textarea):not(select):not([contenteditable="true"]) {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+
+input,
+textarea,
+select,
+[contenteditable="true"] {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+  -webkit-touch-callout: default !important;
+}
+
+img, a, svg, video {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
