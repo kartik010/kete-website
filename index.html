@@ -37,6 +37,8 @@
 <link rel="dns-prefetch" href="https://a.basemaps.cartocdn.com"/>
 <link rel="preconnect" href="https://unpkg.com" crossorigin/>
 <link rel="preconnect" href="https://a.basemaps.cartocdn.com" crossorigin/>
+<link rel="dns-prefetch" href="https://server.arcgisonline.com"/>
+<link rel="preconnect" href="https://server.arcgisonline.com" crossorigin/>
 <link rel="dns-prefetch" href="https://api.web3forms.com"/>
 <link rel="preconnect" href="https://api.web3forms.com" crossorigin/>
 <style>
@@ -2848,7 +2850,7 @@
         </div>
       </div>
     </div>
-    <div class="map-container reveal" id="map-section">
+    <div class="map-container reveal" id="map-section" data-carto-basemap-key="">
       <div class="map-leaflet-shell" id="map-leaflet-shell">
         <div id="kete-coverage-map" class="map-leaflet" role="region" aria-label="Map: KETE project sites across India and Nepal — Kathmandu hub, Terai solar plants (Biratnagar, Jhapa, Janakpur, Chanauta), HMEL Bathinda, Kolkata, Mangalore, Sri City, Shrirampur, Rae Bareli"></div>
         <figure class="map-static-fallback" id="map-static-fallback" aria-hidden="true">
@@ -3839,11 +3841,29 @@
         worldCopyJump: true
       });
       L.control.zoom({ position: 'bottomleft' }).addTo(coverageMap);
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 19
-      }).addTo(coverageMap);
+      var cartoBasemapKey = (mapSection && mapSection.getAttribute('data-carto-basemap-key') || '').trim();
+      var mapLegendHint = mapSection && mapSection.querySelector('.map-legend-hint');
+      if (cartoBasemapKey) {
+        L.tileLayer(
+          'https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png?key=' + encodeURIComponent(cartoBasemapKey),
+          {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20
+          }
+        ).addTo(coverageMap);
+      } else {
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+          attribution: 'Tiles &copy; <a href="https://www.esri.com/">Esri</a>',
+          maxZoom: 16
+        }).addTo(coverageMap);
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+          attribution: ''
+        }).addTo(coverageMap);
+        if (mapLegendHint) {
+          mapLegendHint.textContent = 'Real map · click markers or photos · Zoom with +/− · © OpenStreetMap · © Esri';
+        }
+      }
       var bounds = L.latLngBounds(L.latLng(6.2, 68.0), L.latLng(37.2, 97.5));
       coverageMap.setMaxBounds(bounds.pad(0.06));
       coverageMap.fitBounds(bounds, { padding: [18, 18], maxZoom: 5 });
